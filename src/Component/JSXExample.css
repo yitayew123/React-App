@@ -1,108 +1,134 @@
+/* ==================================================================
+   Main container — the card that wraps the whole component
+   ================================================================== */
 .jsx-container {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 40px;
-  text-align: center;
-  font-family: Arial, sans-serif;
+  max-width: 700px;           /* cap the width so text stays readable */
+  margin: 50px auto;          /* center the card horizontally, add top/bottom space */
+  padding: 40px;              /* inner breathing room */
+  text-align: center;         /* center all inline content by default */
+  font-family: Arial, sans-serif; /* fallback font stack */
 
-  /* Main card */
-  background: #ffffff;
-  color: #222222;
+  /* ---------- Card appearance ---------- */
+  background: #ffffff;        /* white card surface */
+  color: #222222;             /* default text color */
 
-  border-radius: 18px;
-  border: 3px solid #4f46e5;
+  border-radius: 18px;        /* rounded corners for a soft look */
+  border: 3px solid #4f46e5;  /* indigo border to frame the card */
 
+  /* ---------- Layered glow / shadow ---------- */
   box-shadow:
-    0 10px 30px rgba(79, 70, 229, 0.4),
-    0 0 25px rgba(34, 211, 238, 0.2);
+    0 10px 30px rgba(79, 70, 229, 0.4),   /* deep indigo drop shadow */
+    0 0 25px rgba(34, 211, 238, 0.2);     /* cyan outer glow */
 }
 
-/* Main Heading */
+/* ==================================================================
+   Main heading (h1) inside the container
+   ================================================================== */
 .jsx-container h1 {
-  margin-bottom: 15px;
-  font-size: 36px;
-  color: #4f46e5;
+  margin-bottom: 15px;        /* small gap below the heading */
+  font-size: 36px;            /* large, prominent title */
+  color: #4f46e5;             /* matches the card border (indigo) */
 }
 
-/* Paragraph */
+/* ==================================================================
+   Paragraphs inside the container
+   ================================================================== */
 .jsx-container p {
-  font-size: 18px;
-  margin: 12px 0;
-  color: #374151;
+  font-size: 18px;            /* comfortable reading size */
+  margin: 12px 0;             /* even vertical spacing between paragraphs */
+  color: #374151;             /* dark slate for good contrast on white */
 }
 
-/* Sub Heading */
+/* ==================================================================
+   Sub-heading (h2) inside the container
+   ================================================================== */
 .jsx-container h2 {
-  margin-top: 30px;
-  margin-bottom: 15px;
-  color: #0891b2;
+  margin-top: 30px;           /* extra space above the students section */
+  margin-bottom: 15px;        /* gap between heading and the list */
+  color: #0891b2;             /* teal accent — contrasts nicely with indigo */
 }
 
-/* Buttons */
+/* ==================================================================
+   Buttons — shared base styles for both buttons
+   (Uses the generic `button` selector so it applies to any button
+   inside this component, regardless of class.)
+   ================================================================== */
 button {
-  margin: 10px;
-  padding: 12px 24px;
+  margin: 10px;               /* spacing around each button */
+  padding: 12px 24px;         /* comfortable click target */
 
-  border: none;
-  border-radius: 8px;
+  border: none;               /* remove default browser border */
+  border-radius: 8px;         /* rounded corners */
 
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 16px;            /* readable button text */
+  font-weight: bold;          /* make the label stand out */
 
-  color: white;
-  cursor: pointer;
+  color: white;               /* white text on colored backgrounds */
+  cursor: pointer;            /* show a hand cursor on hover */
 
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;  /* smooth animation for hover effects */
 }
 
-/* First Button */
+/* ==================================================================
+   "Click Me" button — red/rose theme (alert-style)
+   ================================================================== */
 .alert-btn {
-  background: #f43f5e;
-  box-shadow: 0 4px 10px rgba(244, 63, 94, 0.35);
+  background: #f43f5e;                          /* rose red */
+  box-shadow: 0 4px 10px rgba(244, 63, 94, 0.35); /* matching soft glow */
 }
 
-/* Second Button */
+/* ==================================================================
+   "Increase Count" button — green theme (success-style)
+   ================================================================== */
 .count-btn {
-  background: #16a34a;
-  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.35);
+  background: #16a34a;                            /* tailwind-style green */
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.35); /* matching soft glow */
 }
 
-/* Button Hover */
+/* ==================================================================
+   Button hover state (applies to both buttons)
+   ================================================================== */
 button:hover {
-  transform: translateY(-3px);
-  opacity: 0.9;
+  transform: translateY(-3px); /* lift the button slightly */
+  opacity: 0.9;                /* subtle dim for feedback */
 }
 
-/* Student List */
+/* ==================================================================
+   Students list — bullet-less list container
+   ================================================================== */
 ul {
-  width: 300px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
+  width: 300px;               /* fixed width so items line up nicely */
+  margin: 0 auto;             /* center the list inside the card */
+  padding: 0;                 /* remove default indentation */
+  list-style: none;           /* hide default bullet points */
 }
 
-/* Student Cards */
+/* ==================================================================
+   Individual list items — styled as "student cards"
+   ================================================================== */
 li {
-  margin: 10px 0;
-  padding: 12px;
+  margin: 10px 0;             /* spacing between items */
+  padding: 12px;              /* inner padding */
 
-  border-radius: 8px;
+  border-radius: 8px;         /* rounded corners */
 
-  background: #eef2ff;
-  color: #312e81;
+  background: #eef2ff;        /* light indigo tint */
+  color: #312e81;             /* deep indigo text */
 
-  border-left: 5px solid #4f46e5;
+  border-left: 5px solid #4f46e5; /* colored accent stripe on the left */
 
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 17px;            /* slightly larger than body text */
+  font-weight: bold;          /* make each name stand out */
 
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12); /* subtle card shadow */
 
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;  /* smooth hover animation */
 }
 
-/* Student Card Hover */
+/* ==================================================================
+   List item hover — slide right and lighten background
+   ================================================================== */
 li:hover {
-  transform: translateX(5px);
-  background: #e0e7ff;
+  transform: translateX(5px); /* nudge the item to the right */
+  background: #e0e7ff;        /* slightly darker indigo tint */
 }
