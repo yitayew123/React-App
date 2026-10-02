@@ -1,0 +1,108 @@
+.jsx-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+
+  /* Main card */
+  background: #ffffff;
+  color: #222222;
+
+  border-radius: 18px;
+  border: 3px solid #4f46e5;
+
+  box-shadow:
+    0 10px 30px rgba(79, 70, 229, 0.4),
+    0 0 25px rgba(34, 211, 238, 0.2);
+}
+
+/* Main Heading */
+.jsx-container h1 {
+  margin-bottom: 15px;
+  font-size: 36px;
+  color: #4f46e5;
+}
+
+/* Paragraph */
+.jsx-container p {
+  font-size: 18px;
+  margin: 12px 0;
+  color: #374151;
+}
+
+/* Sub Heading */
+.jsx-container h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #0891b2;
+}
+
+/* Buttons */
+button {
+  margin: 10px;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  color: white;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* First Button */
+.alert-btn {
+  background: #f43f5e;
+  box-shadow: 0 4px 10px rgba(244, 63, 94, 0.35);
+}
+
+/* Second Button */
+.count-btn {
+  background: #16a34a;
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.35);
+}
+
+/* Button Hover */
+button:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* Student List */
+ul {
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+/* Student Cards */
+li {
+  margin: 10px 0;
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background: #eef2ff;
+  color: #312e81;
+
+  border-left: 5px solid #4f46e5;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+
+  transition: all 0.3s ease;
+}
+
+/* Student Card Hover */
+li:hover {
+  transform: translateX(5px);
+  background: #e0e7ff;
+}
