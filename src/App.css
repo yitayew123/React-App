@@ -1,3 +1,186 @@
+/* App.css */
+.open-modal-btn {
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.open-modal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+}
+
+/* App.css — dashboard layout */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.App {
+  max-width: 640px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin: 0 0 4px 0;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ---------- Student list ---------- */
+.student-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.student-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.student-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+}
+
+.student-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.student-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.student-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-dept {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.row-delete-btn {
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #b91c1c;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.row-delete-btn:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 30px 20px;
+  color: #6b7280;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35);
+  animation: toast-in 0.25s ease-out;
+  z-index: 5000;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 /* ============================================================
    App.css
    Layout for the multi-demo switcher.
@@ -5,9 +188,13 @@
    ============================================================ */
 
 /* ---------- Global reset ---------- */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body, #root {
+html,
+body,
+#root {
   min-height: 100%;
   height: auto;
   margin: 0;
@@ -41,7 +228,7 @@ html, body, #root {
   border-right: 1px solid #1f2b3e;
   position: sticky;
   top: 0;
-  height: 100vh;                /* fixed sidebar */
+  height: 100vh; /* fixed sidebar */
   overflow-y: auto;
 }
 
@@ -62,7 +249,9 @@ html, body, #root {
 }
 
 @keyframes brand-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Nav — vertical list of buttons */
@@ -117,7 +306,7 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   padding: 22px 26px;
-  min-width: 0;                /* allow flex children to shrink */
+  min-width: 0; /* allow flex children to shrink */
 }
 
 .app-content__header {
@@ -187,7 +376,9 @@ html, body, #root {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
 }
 
 .launcher-btn--primary {
