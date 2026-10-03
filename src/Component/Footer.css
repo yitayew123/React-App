@@ -1,0 +1,161 @@
+/* ============================================================
+   Footer.css
+   Single-row footer — same layout feel as the Header:
+     LEFT   → brand
+     CENTER → links
+     RIGHT  → socials + copyright
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX (keeps footer reachable)
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Design tokens ---------- */
+.site-footer {
+  --footer-bg:      #0f172a;      /* deep navy */
+  --footer-bg-2:    #1e293b;      /* lighter panel */
+  --footer-text:    #e2e8f0;
+  --footer-muted:   #94a3b8;
+  --accent:         #38bdf8;      /* sky blue */
+  --accent-hover:   #0ea5e9;
+  --border:         #334155;
+}
+
+/* ------------------------------------------------------------
+   .site-footer — the single bar
+   Mirrors .site-header layout (flex, space-between).
+   ------------------------------------------------------------ */
+.site-footer {
+  display: flex;                  /* one horizontal bar */
+  align-items: center;            /* vertically centered */
+  justify-content: space-between; /* brand | links | actions */
+  gap: 20px;
+  padding: 12px 24px;             /* same as header */
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: var(--footer-text);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  border-top: 3px solid var(--accent);
+  margin-top: 24px;
+  flex-wrap: nowrap;              /* keep in one row */
+}
+
+/* ------------------------------------------------------------
+   LEFT: brand
+   ------------------------------------------------------------ */
+.site-footer__brand {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;            /* never wrap */
+  flex-shrink: 0;                 /* keep its width */
+}
+
+/* ------------------------------------------------------------
+   CENTER: nav links (horizontal)
+   ------------------------------------------------------------ */
+.site-footer__nav {
+  flex: 1;                        /* take remaining space */
+  display: flex;
+  justify-content: center;        /* center the links */
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer__link {
+  color: var(--footer-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.site-footer__link:hover {
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------
+   RIGHT: socials + copyright
+   ------------------------------------------------------------ */
+.site-footer__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;                 /* keep its width */
+}
+
+.site-footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;                    /* compact circle */
+  height: 28px;
+  font-size: 13px;
+  border-radius: 50%;
+  background-color: var(--footer-bg-2);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.site-footer__social:hover {
+  transform: translateY(-2px) scale(1.08);
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.site-footer__copy {
+  font-size: 12px;
+  color: var(--footer-muted);
+  white-space: nowrap;            /* keep on one line */
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — allow wrap on very small screens
+   ------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .site-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer__nav {
+    order: 3;                     /* links move below */
+    width: 100%;
+    justify-content: center;
+  }
+
+  .site-footer__links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}

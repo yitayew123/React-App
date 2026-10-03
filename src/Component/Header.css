@@ -1,0 +1,212 @@
+/* ============================================================
+   Header.css
+   Modern, sticky header with logo, nav, and actions.
+
+   DESIGN NOTES:
+   - Sticky top bar with blur backdrop
+   - Flex layout: brand | nav | actions
+   - Gradient underline on active/hover links
+   - Responsive: stacks on small screens
+   ============================================================ */
+
+/* ---------- Design tokens ---------- */
+.site-header {
+  --header-bg:      rgba(255, 255, 255, 0.92);
+  --header-border:  #e5e7eb;
+  --primary:        #2563eb;
+  --primary-dark:   #1e40af;
+  --text:           #1f2937;
+  --muted:          #6b7280;
+  --shadow:         0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+/* ------------------------------------------------------------
+   .site-header — main bar
+   ------------------------------------------------------------ */
+.site-header {
+  position: sticky;                          /* stick to top */
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 24px;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(8px);                /* frosted glass */
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--header-border);
+  box-shadow: var(--shadow);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ------------------------------------------------------------
+   BRAND: logo + name + tagline
+   ------------------------------------------------------------ */
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header__logo {
+  font-size: 26px;
+  line-height: 1;
+  animation: spin-slow 8s linear infinite;   /* subtle motion */
+}
+
+/* Slow spin animation for the logo */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.site-header__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.site-header__title {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;                        /* gradient text */
+}
+
+.site-header__tagline {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* ------------------------------------------------------------
+   NAV: horizontal list of links
+   ------------------------------------------------------------ */
+.site-header__nav-list {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header__link {
+  position: relative;
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover state */
+.site-header__link:hover {
+  color: var(--primary);
+  background-color: #eff6ff;
+}
+
+/* Active link modifier (from ternary in JSX) */
+.site-header__link--active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+.site-header__link--active:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e40af, #1e3a8a);
+}
+
+/* ------------------------------------------------------------
+   ACTIONS: greeting + theme button
+   ------------------------------------------------------------ */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-header__greeting {
+  font-size: 13px;
+  color: var(--text);
+  background-color: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--header-border);
+}
+
+.site-header__role {
+  color: var(--muted);
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* Theme button */
+.site-header__btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.site-header__btn:hover {
+  background-color: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.site-header__btn:active {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   Responsive: stack on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .site-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-header__nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .site-header__greeting {
+    display: none;                           /* hide on mobile */
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .site-header                       → block
+     .site-header__brand                → element
+     .site-header__logo                 → element (animated)
+     .site-header__brand-text           → element
+     .site-header__title                → element (gradient text)
+     .site-header__tagline              → element
+     .site-header__nav                  → element (wrapper)
+     .site-header__nav-list             → element (flex list)
+     .site-header__link                 → element
+     .site-header__link--active         → modifier
+     .site-header__actions              → element
+     .site-header__greeting             → element
+     .site-header__role                 → element
+     .site-header__btn                  → element
+   ============================================================ */

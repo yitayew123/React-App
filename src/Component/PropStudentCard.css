@@ -1,0 +1,191 @@
+/* ============================================================
+   PropStudentCard.css
+   Styles for the <PropStudentCard /> child component.
+
+   RENAMED from StudentCard.css → PropStudentCard.css.
+   Class prefix "prop-student-card" avoids collisions with
+   the existing StudentCard.css in this project.
+
+   DESIGN NOTES:
+   - Compact card so two fit on one screen.
+   - Left accent stripe anchors the card visually.
+   - Skill chips wrap gracefully when many skills exist.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS — inherited by every child element.
+   Change a value here → the whole card updates.
+   ------------------------------------------------------------ */
+.prop-student-card {
+  --primary: #2563eb; /* main blue */
+  --primary-dark: #1e40af; /* darker blue for hover */
+  --text: #1f2937; /* base text */
+  --muted: #6b7280; /* muted text (labels) */
+  --border: #e5e7eb; /* subtle borders */
+  --radius: 10px; /* card corner radius */
+  --shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+/* ------------------------------------------------------------
+   .prop-student-card — main wrapper
+   ------------------------------------------------------------ */
+.prop-student-card {
+  padding: 14px 16px;
+  background-color: #f8fafc; /* soft slate */
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary); /* accent stripe */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.prop-student-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ------------------------------------------------------------
+   HEADER: name + age badge
+   ------------------------------------------------------------ */
+.prop-student-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.prop-student-card__name {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+.prop-student-card__badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px; /* pill */
+  background-color: #dbeafe;
+  color: var(--primary-dark);
+  border: 1px solid #93c5fd;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   BODY: department row
+   ------------------------------------------------------------ */
+.prop-student-card__detail {
+  font-size: 12px;
+  margin: 0;
+  color: var(--text);
+}
+
+.prop-student-card__label {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-right: 4px;
+}
+
+/* ------------------------------------------------------------
+   SKILLS section
+   ------------------------------------------------------------ */
+.prop-student-card__section {
+  margin: 0;
+}
+
+.prop-student-card__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin: 0 0 4px 0;
+}
+
+.prop-student-card__skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.prop-student-card__skill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background-color: #eff6ff;
+  color: var(--primary-dark);
+  border: 1px solid #bfdbfe;
+  transition: background-color 0.2s ease;
+}
+
+.prop-student-card__skill:hover {
+  background-color: #dbeafe;
+}
+
+/* ------------------------------------------------------------
+   FOOTER: button
+   ------------------------------------------------------------ */
+.prop-student-card__footer {
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.prop-student-card__btn {
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.prop-student-card__btn--primary {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.35);
+}
+
+.prop-student-card__btn--primary:hover {
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.45);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .prop-student-card {
+    padding: 12px;
+  }
+
+  .prop-student-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Classes: prop-student-card and its __elements
+   ============================================================ */

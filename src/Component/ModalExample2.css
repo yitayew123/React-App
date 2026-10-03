@@ -1,0 +1,378 @@
+/* ============================================================
+   ModalExample2.css
+   Styles for the DELETE CONFIRMATION modal (ModalExample2).
+
+   DESIGN NOTES:
+   - Danger palette (red accents) to signal destructiveness.
+   - Warning icon in a circular red badge.
+   - "Student preview" row shows what is being deleted.
+   - Type-to-confirm input with monospace text.
+   - Spinner inside the Delete button while busy.
+   - Full keyboard + overlay close affordances.
+   ============================================================ */
+
+/* ---------- Design tokens ---------- */
+.del-overlay {
+  --danger: #dc2626;
+  --danger-dark: #991b1b;
+  --danger-light: #fee2e2;
+  --danger-border: #fca5a5;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --radius: 16px;
+}
+
+/* ------------------------------------------------------------
+   .del-overlay — full-screen dark backdrop
+   ------------------------------------------------------------ */
+.del-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: del-fade 0.2s ease-out;
+}
+
+@keyframes del-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------
+   .del-card — the dialog box
+   ------------------------------------------------------------ */
+.del-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 26px 26px 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #fefefe 100%);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 24px 48px rgba(15, 23, 42, 0.25),
+    0 4px 12px rgba(15, 23, 42, 0.15);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  text-align: center;
+  animation: del-pop 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@keyframes del-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------------------------------------
+   .del-icon — circular warning badge
+   ------------------------------------------------------------ */
+.del-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f87171, #dc2626);
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+  animation: del-icon-pop 0.4s ease-out 0.1s both;
+}
+
+@keyframes del-icon-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------
+   Title + description
+   ------------------------------------------------------------ */
+.del-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--danger-dark);
+  margin: 0 0 6px 0;
+  letter-spacing: 0.2px;
+}
+
+.del-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 16px 0;
+}
+
+/* ------------------------------------------------------------
+   Student preview card
+   ------------------------------------------------------------ */
+.del-student {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  background-color: var(--danger-light);
+  border: 1px solid var(--danger-border);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.del-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f87171, #dc2626);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
+}
+
+.del-student-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* allow ellipsis */
+}
+
+.del-student-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.del-student-dept {
+  font-size: 11px;
+  color: var(--danger-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ------------------------------------------------------------
+   Type-to-confirm input
+   ------------------------------------------------------------ */
+.del-label {
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.del-label strong {
+  color: var(--danger-dark);
+  letter-spacing: 0.5px;
+}
+
+.del-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  color: var(--danger-dark);
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 3px; /* spaced-out caps look */
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.del-input::placeholder {
+  color: #cbd5e1;
+  letter-spacing: 3px;
+}
+
+.del-input:hover:not(:disabled) {
+  border-color: #93c5fd;
+}
+
+.del-input:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+}
+
+.del-input:disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------
+   Error message
+   ------------------------------------------------------------ */
+.del-error {
+  margin: 10px 0 0 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--danger-dark);
+  background-color: var(--danger-light);
+  border: 1px solid var(--danger-border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   Action row
+   ------------------------------------------------------------ */
+.del-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.del-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* Ghost / Cancel */
+.del-btn--ghost {
+  background-color: #ffffff;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.del-btn--ghost:hover:not(:disabled) {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+/* Danger / Delete */
+.del-btn--danger {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+}
+
+.del-btn--danger:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(220, 38, 38, 0.45);
+}
+
+.del-btn--danger:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disabled state (typed !== "DELETE" or busy) */
+.del-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus ring for keyboard users */
+.del-btn:focus-visible {
+  outline: 3px solid rgba(220, 38, 38, 0.35);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   Spinner shown while deleting
+   ------------------------------------------------------------ */
+.del-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: del-spin 0.7s linear infinite;
+}
+
+@keyframes del-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .del-card {
+    padding: 22px 18px 18px;
+    border-radius: 14px;
+  }
+
+  .del-title {
+    font-size: 18px;
+  }
+  .del-actions {
+    flex-direction: column-reverse;
+  } /* Danger on bottom */
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .del-overlay    → full-screen backdrop
+     .del-card       → centered dialog (animated)
+     .del-icon       → warning badge (animated)
+     .del-title      → heading
+     .del-desc       → short description
+     .del-student    → preview of the item being deleted
+     .del-avatar     → initial circle
+     .del-student-*  → name + department text
+     .del-label      → "Type DELETE" instruction
+     .del-input      → monospace confirmation input
+     .del-error      → error box
+     .del-actions    → Cancel + Delete row
+     .del-btn        → base button
+     .del-btn--ghost → outline Cancel
+     .del-btn--danger→ red Delete
+     .del-spinner    → loading spinner inside Delete
+   ============================================================ */

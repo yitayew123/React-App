@@ -1,0 +1,364 @@
+/* ============================================================
+   JSXFormPartTwo.css
+   Attractive registration form for <JSXFormPartTwo />.
+
+   DESIGN NOTES:
+   - Full-page indigo gradient background
+   - Card with soft shadow and rounded corners
+   - Each section wrapped in a fieldset with legend
+   - Focus glow on inputs, hover-lift on submit button
+   - Responsive: single column on all screens
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #eef2ff; /* indigo page bg */
+}
+
+/* ------------------------------------------------------------
+   .reg-page — full-screen center wrapper
+   ------------------------------------------------------------ */
+.reg-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: radial-gradient(
+    circle at top left,
+    #e0e7ff 0%,
+    #eef2ff 45%,
+    #ffffff 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   .reg-card — the white card
+   ------------------------------------------------------------ */
+.reg-card {
+  width: 100%;
+  max-width: 620px; /* readable width */
+  padding: 28px 26px 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 14px 36px rgba(30, 41, 59, 0.1),
+    0 2px 6px rgba(30, 41, 59, 0.05);
+}
+
+/* ------------------------------------------------------------
+   HEADER
+   ------------------------------------------------------------ */
+.reg-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reg-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e3a8a; /* deep blue */
+  margin: 0 0 4px 0;
+  letter-spacing: 0.2px;
+}
+
+.reg-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Red asterisk for required fields */
+.reg-required {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   FORM LAYOUT
+   ------------------------------------------------------------ */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ------------------------------------------------------------
+   FIELDSET — visual grouping for sections
+   ------------------------------------------------------------ */
+.reg-fieldset {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px 16px;
+  background-color: #ffffff;
+}
+
+.reg-legend {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb; /* blue accent */
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 0 6px;
+}
+
+/* ------------------------------------------------------------
+   FIELD — a label + input pair
+   ------------------------------------------------------------ */
+.reg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+/* Last field inside a fieldset has no bottom margin */
+.reg-field:last-child {
+  margin-bottom: 0;
+}
+
+.reg-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151; /* dark gray */
+}
+
+/* ------------------------------------------------------------
+   INPUTS, SELECT, TEXTAREA — shared style
+   ------------------------------------------------------------ */
+.reg-input,
+.reg-select,
+.reg-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-family: inherit; /* textarea fix */
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.reg-input::placeholder,
+.reg-textarea::placeholder {
+  color: #9ca3af;
+}
+
+.reg-input:hover,
+.reg-select:hover,
+.reg-textarea:hover {
+  border-color: #93c5fd;
+}
+
+.reg-input:focus,
+.reg-select:focus,
+.reg-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Textarea: allow vertical resize only */
+.reg-textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* ------------------------------------------------------------
+   RADIO GROUP
+   ------------------------------------------------------------ */
+.reg-radio-group {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.reg-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.reg-radio:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.reg-radio input[type="radio"] {
+  accent-color: #2563eb; /* blue native control */
+  transform: scale(1.15); /* slightly bigger */
+}
+
+/* ------------------------------------------------------------
+   CHECKBOX GROUP
+   ------------------------------------------------------------ */
+.reg-checkbox-group {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.reg-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.reg-checkbox:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.reg-checkbox input[type="checkbox"] {
+  accent-color: #2563eb;
+  transform: scale(1.15);
+}
+
+/* ------------------------------------------------------------
+   SUBMIT BUTTON
+   ------------------------------------------------------------ */
+.reg-submit {
+  margin-top: 4px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.reg-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+}
+
+.reg-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
+.reg-submit:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   LIVE PREVIEW (collapsible)
+   ------------------------------------------------------------ */
+.reg-preview {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #6b7280;
+  border-top: 1px dashed #e5e7eb;
+  padding-top: 12px;
+}
+
+.reg-preview summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #2563eb;
+  user-select: none;
+}
+
+.reg-preview pre {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #1f2937;
+  overflow-x: auto; /* wide JSON scrolls */
+  white-space: pre-wrap; /* wrap long lines */
+  word-break: break-word;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .reg-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .reg-title {
+    font-size: 20px;
+  }
+
+  .reg-fieldset {
+    padding: 12px;
+  }
+
+  .reg-radio-group,
+  .reg-checkbox-group {
+    gap: 10px;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .reg-page               → full-screen wrapper with gradient bg
+     .reg-card               → white card holding the form
+     .reg-header             → title + subtitle block
+     .reg-title              → main heading
+     .reg-subtitle           → small subtitle
+     .reg-required           → red asterisk
+     .reg-form               → form layout
+     .reg-fieldset           → section wrapper
+     .reg-legend             → section heading
+     .reg-field              → label + input pair
+     .reg-label              → field label
+     .reg-input              → text/email/number input
+     .reg-select             → dropdown
+     .reg-textarea           → multi-line input
+     .reg-radio-group        → row of radio options
+     .reg-radio              → single radio wrapper
+     .reg-checkbox-group     → row of checkbox options
+     .reg-checkbox           → single checkbox wrapper
+     .reg-submit             → gradient submit button
+     .reg-preview            → collapsible JSON preview
+   ============================================================ */

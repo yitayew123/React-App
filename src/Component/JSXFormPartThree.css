@@ -1,0 +1,482 @@
+/* ============================================================
+   JSXFormPartThree.css
+   Professional stepper form for <JSXFormPartThree />.
+
+   DESIGN NOTES:
+   - Indigo gradient page background with radial glow.
+   - Compact white card, max-width 720px.
+   - Stepper bar with circles + animated progress line.
+   - Chip-style radios/checkboxes for a modern touch.
+   - Two-column grid inside each step (responsive).
+   - Action bar with Back / Reset / Next / Submit.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   ------------------------------------------------------------ */
+html, body, #root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #eef2ff;
+}
+
+/* ------------------------------------------------------------
+   .stepper-page — full-screen centered wrapper
+   ------------------------------------------------------------ */
+.stepper-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: radial-gradient(
+    circle at top left,
+    #e0e7ff 0%,
+    #eef2ff 45%,
+    #ffffff 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   .stepper-card — white card
+   ------------------------------------------------------------ */
+.stepper-card {
+  width: 100%;
+  max-width: 720px;
+  padding: 26px 28px 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow:
+    0 14px 36px rgba(30, 41, 59, 0.10),
+    0 2px 6px rgba(30, 41, 59, 0.05);
+}
+
+/* ------------------------------------------------------------
+   HEADER
+   ------------------------------------------------------------ */
+.stepper-header { text-align: center; margin-bottom: 20px; }
+
+.stepper-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.2px;
+}
+
+.stepper-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   STEPPER BAR
+   ------------------------------------------------------------ */
+.stepper-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 6px 4px;
+}
+
+/* Thin progress track */
+.stepper-bar::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  right: 22px;
+  height: 3px;
+  background-color: #e5e7eb;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+/* Filled progress line (width set inline) */
+.stepper-progress {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #2563eb);
+  border-radius: 3px;
+  z-index: 1;
+  transition: width 0.35s ease;
+}
+
+/* Each step (circle + label) */
+.stepper-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.stepper-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.stepper-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Active step */
+.stepper-step.is-active .stepper-circle {
+  border-color: #2563eb;
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.stepper-step.is-active .stepper-label { color: #1e3a8a; }
+
+/* Completed step */
+.stepper-step.is-done .stepper-circle {
+  border-color: #16a34a;
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.stepper-step.is-done .stepper-label { color: #15803d; }
+
+/* ------------------------------------------------------------
+   FORM BODY
+   ------------------------------------------------------------ */
+.stepper-form { display: flex; flex-direction: column; gap: 18px; }
+
+.step-section { display: flex; flex-direction: column; gap: 12px; }
+
+.step-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 4px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+/* ------------------------------------------------------------
+   GRID — two columns on desktop
+   ------------------------------------------------------------ */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+.field--full { grid-column: 1 / -1; }
+
+/* ------------------------------------------------------------
+   FIELD — label + input pair
+   ------------------------------------------------------------ */
+.field { display: flex; flex-direction: column; gap: 4px; }
+
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.req { color: #dc2626; font-weight: 700; }
+
+/* Shared input style */
+.field-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-input::placeholder { color: #9ca3af; }
+
+.field-input:hover { border-color: #93c5fd; }
+
+.field-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.field-textarea { resize: vertical; min-height: 70px; }
+
+/* Range slider */
+.field-range {
+  width: 100%;
+  accent-color: #2563eb;
+  margin-top: 4px;
+}
+
+/* Color picker */
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field-color {
+  width: 40px;
+  height: 32px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+}
+
+.color-value {
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  color: #6b7280;
+}
+
+/* File input */
+.field-file {
+  font-size: 12px;
+  color: #374151;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: #6b7280;
+  margin: 2px 0 0 0;
+}
+
+/* Error text */
+.field-error {
+  font-size: 11px;
+  color: #dc2626;
+  margin: 2px 0 0 0;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   CHIPS — modern radio / checkbox pills
+   ------------------------------------------------------------ */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1.5px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.chip input { display: none; }               /* hide native control */
+
+.chip:hover { border-color: #bfdbfe; background-color: #eff6ff; }
+
+.chip.is-selected {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   Terms checkbox
+   ------------------------------------------------------------ */
+.checkbox-line {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.checkbox-line input { margin-top: 3px; accent-color: #2563eb; }
+
+.checkbox-line a { color: #2563eb; text-decoration: underline; }
+
+/* ------------------------------------------------------------
+   REVIEW GRID
+   ------------------------------------------------------------ */
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+  padding: 12px 14px;
+  background-color: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.review-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.review-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.review-value {
+  font-size: 13px;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.review-color { display: inline-flex; align-items: center; gap: 6px; }
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+}
+
+.success-msg {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: #dcfce7;
+  color: #166534;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid #86efac;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   ACTION BAR
+   ------------------------------------------------------------ */
+.stepper-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 6px;
+}
+
+/* Push Submit / Next to the right */
+.stepper-actions .btn:last-child { margin-left: auto; }
+
+.btn {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Ghost */
+.btn--ghost {
+  background-color: #ffffff;
+  color: #2563eb;
+  border: 1.5px solid #2563eb;
+}
+
+.btn--ghost:hover:not(:disabled) { background-color: #eff6ff; }
+
+/* Primary */
+.btn--primary {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+}
+
+/* Success */
+.btn--success {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+}
+
+.btn--success:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.45);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .stepper-card { padding: 20px 16px; }
+  .stepper-title { font-size: 20px; }
+  .grid-2, .review-grid { grid-template-columns: 1fr; }
+  .stepper-label { display: none; }             /* hide labels on mobile */
+  .stepper-actions { flex-wrap: wrap; }
+  .stepper-actions .btn:last-child { margin-left: 0; flex: 1; }
+}
+
+/* ============================================================
+   END OF FILE
+   Classes: stepper-page, stepper-card, stepper-header,
+   stepper-title, stepper-subtitle, stepper-bar, stepper-progress,
+   stepper-step, stepper-circle, stepper-label, stepper-form,
+   step-section, step-title, grid-2, field, field-label, req,
+   field-input, field-textarea, field-range, field-color, color-row,
+   color-value, field-file, field-hint, field-error, chip-row, chip,
+   checkbox-line, review-grid, review-row, review-label,
+   review-value, review-color, swatch, success-msg, stepper-actions,
+   btn, btn--ghost, btn--primary, btn--success
+   ============================================================ */

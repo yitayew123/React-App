@@ -1,0 +1,206 @@
+/* ============================================================
+   ModalExample.css
+   Styles for <ModalExample /> — a portal-rendered modal.
+
+   DESIGN NOTES:
+   - Dark, blurred backdrop for focus.
+   - Card with subtle scale + fade animation on open.
+   - Circular success icon in green.
+   - Gradient primary button with hover lift.
+   - Fully accessible focus ring on the button.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   .modal-overlay — full-screen backdrop
+   ------------------------------------------------------------ */
+.modal-overlay {
+  position: fixed; /* pin to viewport */
+  inset: 0; /* top/right/bottom/left = 0 */
+  z-index: 9999; /* above everything */
+  display: flex; /* center the card */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(15, 23, 42, 0.55); /* dark tint */
+  backdrop-filter: blur(6px); /* frosted glass */
+  -webkit-backdrop-filter: blur(6px);
+  animation: overlay-fade 0.2s ease-out;
+}
+
+/* Overlay fade-in animation */
+@keyframes overlay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------
+   .modal-card — the dialog box
+   ------------------------------------------------------------ */
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px; /* keep it compact */
+  padding: 28px 26px 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 24px 48px rgba(15, 23, 42, 0.25),
+    0 4px 12px rgba(15, 23, 42, 0.15);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  text-align: center;
+  animation: modal-pop 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+/* Card scale + fade animation on open */
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------------------------------------
+   .modal-icon — circular success badge
+   ------------------------------------------------------------ */
+.modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
+  animation: icon-pop 0.4s ease-out 0.1s both;
+}
+
+/* Icon pop-in animation */
+@keyframes icon-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------
+   Title & message
+   ------------------------------------------------------------ */
+.modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e3a8a; /* deep blue */
+  margin: 0 0 8px 0;
+  letter-spacing: 0.2px;
+}
+
+.modal-message {
+  font-size: 14px;
+  color: #374151; /* dark gray */
+  line-height: 1.55;
+  margin: 0 0 20px 0;
+}
+
+.modal-message strong {
+  color: #1e40af; /* highlighted name */
+}
+
+/* ------------------------------------------------------------
+   Action row — button(s)
+   ------------------------------------------------------------ */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Primary — gradient blue */
+.modal-btn--primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.modal-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+}
+
+.modal-btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.35);
+}
+
+.modal-btn--primary:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — tighter padding on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .modal-card {
+    padding: 22px 18px 18px;
+    border-radius: 14px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+  .modal-message {
+    font-size: 13px;
+  }
+
+  .modal-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .modal-overlay   → fixed full-screen backdrop
+     .modal-card      → centered dialog box (animated)
+     .modal-icon      → circular success badge (animated)
+     .modal-title     → heading
+     .modal-message   → body text
+     .modal-actions   → button row
+     .modal-btn       → base button
+     .modal-btn--primary → blue gradient button
+   ============================================================ */

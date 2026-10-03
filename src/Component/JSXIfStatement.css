@@ -1,0 +1,139 @@
+/* ============================================================
+   JSXIfStatement.css
+   Styles for the <JSXIfStatement /> React component.
+
+   HOW IT CONNECTS TO JSX:
+   - Each class below is used in JSXIfStatement.jsx via className.
+   - Imported in JSXIfStatement.jsx with:
+         import "./JSXIfStatement.css";
+   - React uses className (not "class") because class is a
+     reserved word in JavaScript.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Global reset — keeps layout predictable, no scrollbars.
+   ------------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* no page scroll */
+}
+
+/* ------------------------------------------------------------
+   .container
+   Outer wrapper — compact card, fits one screen.
+   Used in JSX as: <div className="container">
+   ------------------------------------------------------------ */
+.container {
+  height: 100vh; /* fill the viewport */
+  max-width: 640px; /* narrow demo card */
+  margin: 0 auto; /* center horizontally */
+  padding: 20px 24px; /* inner spacing */
+  background-color: #ffffff; /* white card background */
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  overflow: hidden; /* no internal scroll */
+  display: flex; /* stack items vertically */
+  flex-direction: column; /* top → bottom */
+  gap: 10px; /* space between items */
+}
+
+/* ------------------------------------------------------------
+   .title
+   Main heading of the demo.
+   Used in JSX as: <h1 className="title">...</h1>
+   ------------------------------------------------------------ */
+.title {
+  font-size: 22px; /* large heading */
+  font-weight: 700; /* bold */
+  color: #1e3a8a; /* deep blue */
+  margin: 0 0 6px 0; /* space below */
+  border-bottom: 2px solid #e5e7eb; /* divider */
+  padding-bottom: 8px;
+}
+
+/* ------------------------------------------------------------
+   .login-box
+   Rendered by <Login /> when isLoggedIn === false.
+   ------------------------------------------------------------ */
+.login-box {
+  font-size: 16px;
+  color: #991b1b; /* dark red text */
+  background-color: #fee2e2; /* light red background */
+  border: 1px solid #fca5a5; /* soft red border */
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   .dashboard-box
+   Rendered by <Dashboard /> when isLoggedIn === true.
+   ------------------------------------------------------------ */
+.dashboard-box {
+  font-size: 16px;
+  color: #166534; /* dark green text */
+  background-color: #dcfce7; /* light green background */
+  border: 1px solid #86efac; /* soft green border */
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   .admin-panel
+   Rendered only when isAdmin === true (AND operator).
+   ------------------------------------------------------------ */
+.admin-panel {
+  font-size: 15px;
+  color: #1e40af; /* blue text */
+  background-color: #eff6ff; /* light blue background */
+  border: 1px solid #bfdbfe; /* soft blue border */
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   .grade-text
+   Shows the computed grade from the if / else block.
+   ------------------------------------------------------------ */
+.grade-text {
+  font-size: 16px;
+  color: #111827; /* near-black */
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   .notification
+   Rendered only when showNotification === true (ternary).
+   ------------------------------------------------------------ */
+.notification {
+  font-size: 14px;
+  color: #92400e; /* amber text */
+  background-color: #fef3c7; /* light amber background */
+  border: 1px solid #fcd34d; /* amber border */
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0;
+}
+
+/* ============================================================
+   END OF FILE
+   Summary of classes:
+     .container      → outer card wrapper
+     .title          → main heading
+     .login-box      → red box (Login branch)
+     .dashboard-box  → green box (Dashboard branch)
+     .admin-panel    → blue box (AND operator branch)
+     .grade-text     → plain grade text
+     .notification   → amber box (ternary true branch)
+   ============================================================ */

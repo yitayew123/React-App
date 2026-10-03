@@ -1,0 +1,226 @@
+/* ============================================================
+   JSXEvent.css
+   Styles for the <JSXEvent /> component.
+
+   HOW IT CONNECTS TO JSX:
+   - Classes below are used in JSXEvent.jsx via className.
+   - Imported in JSXEvent.jsx with:
+         import "./JSXEvent.css";
+   - React uses className (not "class").
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   Allows the page to scroll if content grows.
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6; /* soft page bg */
+}
+
+/* ------------------------------------------------------------
+   .event-container
+   Outer wrapper — centered card that holds all event demos.
+   Used in JSX as: <div className="event-container">
+   ------------------------------------------------------------ */
+.event-container {
+  max-width: 520px; /* narrow, focused layout */
+  margin: 24px auto; /* center horizontally */
+  padding: 20px 24px; /* inner spacing */
+  background-color: #ffffff; /* white card */
+  border-radius: 12px; /* rounded corners */
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* space between rows */
+}
+
+/* ------------------------------------------------------------
+   .event-title
+   Page heading.
+   Used in JSX as: <h1 className="event-title">React Events Example</h1>
+   ------------------------------------------------------------ */
+.event-title {
+  font-size: 22px; /* prominent heading */
+  font-weight: 700;
+  color: #1e3a8a; /* deep blue */
+  text-align: center;
+  margin: 0 0 8px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb; /* subtle divider */
+}
+
+/* ------------------------------------------------------------
+   .event-row
+   Wrapper for one event demo (button + spacing).
+   Keeps vertical rhythm consistent.
+   ------------------------------------------------------------ */
+.event-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ------------------------------------------------------------
+   .event-btn
+   Base button style shared by all event buttons.
+   ------------------------------------------------------------ */
+.event-btn {
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af); /* blue */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.35);
+}
+
+.event-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.45);
+}
+
+.event-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.35);
+}
+
+/* Button modifiers -------------------------------------------------- */
+
+/* Secondary: outline style for "Double Click" */
+.event-btn--secondary {
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  box-shadow: none;
+}
+
+.event-btn--secondary:hover {
+  background-color: #eff6ff;
+  box-shadow: none;
+}
+
+/* Accent: purple gradient for "Show Student" */
+.event-btn--accent {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  box-shadow: 0 1px 4px rgba(124, 58, 237, 0.35);
+}
+
+.event-btn--accent:hover {
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
+}
+
+/* Primary: green gradient for "Submit Form" */
+.event-btn--primary {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.35);
+}
+
+.event-btn--primary:hover {
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.45);
+}
+
+/* ------------------------------------------------------------
+   .event-input
+   Text inputs used for change and keyboard events.
+   ------------------------------------------------------------ */
+.event-input {
+  width: 100%; /* fill the row */
+  padding: 9px 12px; /* inner spacing */
+  font-size: 13px; /* readable size */
+  color: #1f2937;
+  background-color: #f8fafc; /* soft slate bg */
+  border: 1px solid #d1d5db; /* light gray border */
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.event-input:focus {
+  border-color: #2563eb; /* blue border */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); /* soft blue glow */
+  background-color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   .event-hover
+   A heading used to demo onMouseOver.
+   ------------------------------------------------------------ */
+.event-hover {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #7c3aed; /* purple text */
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.event-hover:hover {
+  background-color: #ede9fe; /* light purple bg */
+  color: #4f46e5; /* darker purple */
+}
+
+/* ------------------------------------------------------------
+   .event-form
+   Form wrapper for the submit demo.
+   ------------------------------------------------------------ */
+.event-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  border-top: 1px dashed #e5e7eb; /* subtle divider */
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — tighter spacing on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .event-container {
+    margin: 12px;
+    padding: 16px;
+  }
+
+  .event-title {
+    font-size: 18px;
+  }
+
+  .event-btn {
+    width: 100%; /* full-width buttons */
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .event-container  → main page wrapper
+     .event-title      → heading
+     .event-row        → one demo row wrapper
+     .event-btn        → base button
+     .event-btn--secondary → outline button
+     .event-btn--accent    → purple button
+     .event-btn--primary   → green button
+     .event-input      → text inputs
+     .event-hover      → hover demo heading
+     .event-form       → form wrapper
+   ============================================================ */

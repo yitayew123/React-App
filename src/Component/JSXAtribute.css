@@ -1,0 +1,172 @@
+/* ============================================================
+   JSXAtribute.css
+   Styles for the <JSXAtribute /> React component.
+
+   HOW IT CONNECTS TO JSX:
+   - Each class below is used in JSXAtribute.jsx via className.
+   - Imported in JSXAtribute.jsx with:
+         import "./JSXAtribute.css";
+   - React uses className (not "class") because class is a
+     reserved word in JavaScript.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   .container
+   Outer wrapper around the whole demo.
+   Centers content and gives a card look.
+   Used in JSX as: <div className="container">
+   ------------------------------------------------------------ */
+.container {
+  max-width: 720px;              /* limit width for readability */
+  margin: 40px auto;             /* 40px top/bottom, auto = center */
+  padding: 24px 28px;            /* inner spacing */
+  background-color: #ffffff;     /* white card background */
+  border-radius: 12px;           /* rounded corners */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); /* soft shadow */
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;              /* comfortable reading */
+}
+
+/* ------------------------------------------------------------
+   .title
+   Main heading of the demo.
+   Used in JSX as: <h1 className="title" title="...">
+   ------------------------------------------------------------ */
+.title {
+  font-size: 26px;               /* large heading */
+  font-weight: 700;              /* bold */
+  color: #1e3a8a;                /* deep blue */
+  margin-bottom: 20px;           /* space below heading */
+  border-bottom: 2px solid #e5e7eb; /* divider line */
+  padding-bottom: 10px;          /* space above divider */
+}
+
+/* ------------------------------------------------------------
+   img
+   Style all images inside the container.
+   In JSX: <img src={imageUrl} alt="..." width="200" />
+   ------------------------------------------------------------ */
+.container img {
+  display: block;                /* remove inline gap below image */
+  margin: 12px 0;                /* vertical spacing */
+  border-radius: 8px;            /* rounded corners */
+  border: 1px solid #e5e7eb;     /* subtle border */
+}
+
+/* ------------------------------------------------------------
+   label
+   Style the "Full Name:" label.
+   In JSX: <label htmlFor="fullname">Full Name:</label>
+   ------------------------------------------------------------ */
+.container label {
+  font-weight: 600;              /* semi-bold */
+  color: #111827;                /* near-black */
+  display: inline-block;         /* allow margin below */
+  margin-bottom: 6px;            /* gap before input */
+}
+
+/* ------------------------------------------------------------
+   input[type="text"]
+   Style text inputs inside the container.
+   Applies to both the name input and the disabled one.
+   ------------------------------------------------------------ */
+.container input[type="text"] {
+  display: block;                /* stack under the label */
+  width: 100%;                   /* fill container width */
+  padding: 10px 12px;            /* inner spacing */
+  margin-bottom: 12px;           /* gap after each input */
+  border: 1px solid #d1d5db;     /* light gray border */
+  border-radius: 8px;            /* rounded corners */
+  font-size: 15px;               /* readable size */
+  outline: none;                 /* remove default focus ring */
+  transition: border-color 0.2s ease; /* smooth focus change */
+}
+
+/* Focus state for better UX */
+.container input[type="text"]:focus {
+  border-color: #2563eb;         /* blue border on focus */
+}
+
+/* Disabled input visual state (disabled={true} in JSX) */
+.container input[type="text"]:disabled {
+  background-color: #f3f4f6;     /* light gray background */
+  color: #9ca3af;                /* muted text color */
+  cursor: not-allowed;           /* show disabled cursor */
+}
+
+/* ------------------------------------------------------------
+   button
+   Style the "Click Me" button.
+   In JSX: <button onClick={handleClick}>Click Me</button>
+   ------------------------------------------------------------ */
+.container button {
+  padding: 10px 18px;            /* inner spacing */
+  background-color: #2563eb;     /* blue background */
+  color: #ffffff;                /* white text */
+  border: none;                  /* remove default border */
+  border-radius: 8px;            /* rounded corners */
+  font-size: 15px;               /* readable size */
+  font-weight: 600;              /* semi-bold */
+  cursor: pointer;               /* pointer on hover */
+  transition: background-color 0.2s ease;
+}
+
+/* Hover state for the button */
+.container button:hover {
+  background-color: #1e40af;     /* darker blue on hover */
+}
+
+/* ------------------------------------------------------------
+   div[data-role="student"]
+   Style the custom data-* attribute example.
+   In JSX: <div data-id="101" data-role="student">
+   ------------------------------------------------------------ */
+.container div[data-role="student"] {
+  padding: 12px 14px;            /* inner spacing */
+  background-color: #eff6ff;     /* light blue background */
+  color: #1e40af;                /* blue text */
+  border: 1px solid #bfdbfe;     /* soft blue border */
+  border-radius: 8px;            /* rounded corners */
+  font-weight: 600;              /* semi-bold */
+  margin-bottom: 12px;           /* space below */
+}
+
+/* ------------------------------------------------------------
+   .student-card
+   Child component card (rendered by <Student />).
+   Used in JSX as: <div className="student-card">
+   ------------------------------------------------------------ */
+.student-card {
+  margin-top: 16px;              /* space above the card */
+  padding: 16px 18px;            /* inner spacing */
+  background-color: #f0fdf4;     /* light green background */
+  border: 1px solid #86efac;     /* soft green border */
+  border-radius: 10px;           /* rounded corners */
+}
+
+/* Heading inside the student card */
+.student-card h2 {
+  font-size: 18px;               /* medium heading */
+  color: #166534;                /* dark green text */
+  margin-bottom: 6px;            /* space below heading */
+}
+
+/* Paragraph inside the student card */
+.student-card p {
+  font-size: 15px;               /* readable size */
+  color: #14532d;                /* darker green */
+  margin: 0;                     /* remove default margin */
+}
+
+/* ============================================================
+   END OF FILE
+   Summary of classes/selectors:
+     .container              → outer card wrapper
+     .title                  → main heading
+     .container img          → images
+     .container label        → form labels
+     .container input[type]  → text inputs (incl. disabled)
+     .container button       → buttons (with hover)
+     div[data-role="student"]→ data-* attribute demo
+     .student-card           → child component card
+   ============================================================ */

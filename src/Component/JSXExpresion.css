@@ -1,0 +1,114 @@
+/* ============================================================
+   JSXExpresion.css
+   Styles for the <JSXExpresion /> React component.
+
+   HOW IT CONNECTS TO JSX:
+   - Every class below (.app-container, .app-title, etc.)
+     is used in JSXExpresion.jsx via the "className" attribute.
+   - Imported in JSXExpresion.jsx with:
+         import "./JSXExpresion.css";
+   - React uses className (not "class") because class is a
+     reserved word in JavaScript.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   .app-container
+   Outer wrapper <div> around the whole component.
+   Creates a centered "card" look for the demo.
+   ------------------------------------------------------------ */
+.app-container {
+  max-width: 640px;              /* limit width for readability */
+  margin: 40px auto;             /* 40px top/bottom, auto = center horizontally */
+  padding: 24px 28px;            /* inner spacing: 24px top/bottom, 28px left/right */
+  background-color: #ffffff;     /* white card background */
+  border-radius: 12px;           /* rounded corners */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); /* soft shadow */
+  font-family: "Segoe UI", Roboto, Arial, sans-serif; /* base font stack */
+}
+
+/* ------------------------------------------------------------
+   .app-title
+   Main heading <h1> of the component.
+   Used in JSX as: <h1 className="app-title">...</h1>
+   ------------------------------------------------------------ */
+.app-title {
+  font-size: 26px;               /* large heading size */
+  font-weight: 700;              /* bold */
+  color: #1e3a8a;                /* deep blue for emphasis */
+  margin-bottom: 20px;           /* space below heading */
+  border-bottom: 2px solid #e5e7eb; /* subtle divider line */
+  padding-bottom: 10px;          /* space between text and divider */
+}
+
+/* ------------------------------------------------------------
+   .app-text
+   Reusable paragraph style for each row of the demo.
+   Used on every <p className="app-text"> in JSXExpresion.jsx.
+   ------------------------------------------------------------ */
+.app-text {
+  font-size: 16px;               /* readable body size */
+  color: #374151;                /* dark gray for softer contrast */
+  margin: 8px 0;                 /* small vertical spacing between rows */
+  line-height: 1.6;              /* comfortable line height */
+}
+
+/* ------------------------------------------------------------
+   .label
+   Bold label inside each paragraph (e.g. "Name:", "Status:").
+   Used in JSX as: <span className="label">Name:</span>
+   ------------------------------------------------------------ */
+.label {
+  font-weight: 600;              /* semi-bold */
+  color: #111827;                /* near-black for contrast */
+  margin-right: 6px;             /* gap between label and value */
+}
+
+/* ------------------------------------------------------------
+   .status
+   Base style for the voting-eligibility message.
+   Combined in JSX with a modifier class:
+       className="status eligible"
+       className="status not-eligible"
+   ------------------------------------------------------------ */
+.status {
+  margin-top: 16px;              /* separate from previous rows */
+  padding: 10px 14px;            /* inner spacing for badge look */
+  border-radius: 8px;            /* rounded badge corners */
+  font-weight: 600;              /* semi-bold text */
+  font-size: 15px;               /* slightly smaller than body */
+}
+
+/* ------------------------------------------------------------
+   .eligible  (modifier for .status)
+   Green theme → when age >= 18 in JSXExpresion.jsx.
+   Applied by the ternary expression:
+       age >= 18 ? "status eligible" : "status not-eligible"
+   ------------------------------------------------------------ */
+.eligible {
+  background-color: #dcfce7;     /* light green background */
+  color: #166534;                /* dark green text (readable) */
+  border: 1px solid #86efac;     /* soft green border */
+}
+
+/* ------------------------------------------------------------
+   .not-eligible  (modifier for .status)
+   Red theme → when age < 18 in JSXExpresion.jsx.
+   Applied by the same ternary expression in JSXExpresion.jsx.
+   ------------------------------------------------------------ */
+.not-eligible {
+  background-color: #fee2e2;     /* light red background */
+  color: #991b1b;                /* dark red text (readable) */
+  border: 1px solid #fca5a5;     /* soft red border */
+}
+
+/* ============================================================
+   END OF FILE
+   Summary of classes:
+     .app-container   → card wrapper
+     .app-title       → main heading
+     .app-text        → paragraph rows
+     .label           → bold inline labels
+     .status          → base badge style
+     .eligible        → green modifier
+     .not-eligible    → red modifier
+   ============================================================ */

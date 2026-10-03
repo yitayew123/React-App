@@ -1,0 +1,233 @@
+/* ============================================================
+   JSXFormPartOne.css
+   Attractive card-style form for the <JSXFormPartOne /> component.
+
+   DESIGN NOTES:
+   - Centered card with soft gradient and shadow
+   - Blue-tinted labels and focus rings
+   - Gradient submit button with hover lift
+   - Responsive: full-width on mobile
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   Allow the page to scroll if content grows.
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #eef2ff;                 /* soft indigo page bg */
+}
+
+/* ------------------------------------------------------------
+   .form-page
+   Full-screen wrapper that centers the card.
+   ------------------------------------------------------------ */
+.form-page {
+  min-height: 100vh;                         /* fill viewport */
+  display: flex;                             /* flex center */
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: radial-gradient(                 /* subtle glow */
+    circle at top left,
+    #e0e7ff 0%,
+    #eef2ff 45%,
+    #ffffff 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   .form-card
+   The white card that holds the form.
+   ------------------------------------------------------------ */
+.form-card {
+  width: 100%;
+  max-width: 400px;                          /* readable width */
+  padding: 28px 26px 24px;                   /* inner spacing */
+  background: linear-gradient(                /* soft gradient */
+    180deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  );
+  border-radius: 16px;                       /* rounded corners */
+  box-shadow:
+    0 10px 30px rgba(30, 41, 59, 0.10),      /* outer shadow */
+    0 2px 6px rgba(30, 41, 59, 0.06);        /* fine shadow */
+  border: 1px solid #e5e7eb;
+}
+
+/* ------------------------------------------------------------
+   Heading + subtitle
+   ------------------------------------------------------------ */
+.form-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;                            /* deep blue */
+  text-align: center;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.2px;
+}
+
+.form-subtitle {
+  font-size: 13px;
+  color: #6b7280;                            /* muted gray */
+  text-align: center;
+  margin: 0 0 18px 0;
+}
+
+/* ------------------------------------------------------------
+   .form-body
+   Stacked layout for label + input + button.
+   ------------------------------------------------------------ */
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ------------------------------------------------------------
+   .form-label
+   Small uppercase label above the input.
+   ------------------------------------------------------------ */
+.form-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;                            /* blue accent */
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-left: 2px;
+}
+
+/* ------------------------------------------------------------
+   .form-input
+   Rounded text input with blue focus ring.
+   ------------------------------------------------------------ */
+.form-input {
+  width: 100%;
+  padding: 12px 14px;                        /* comfortable tap area */
+  font-size: 14px;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Placeholder text */
+.form-input::placeholder {
+  color: #9ca3af;                            /* muted gray */
+}
+
+/* Focus state: blue border + soft glow */
+.form-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  background-color: #ffffff;
+}
+
+/* Hover state */
+.form-input:hover:not(:focus) {
+  border-color: #93c5fd;
+}
+
+/* ------------------------------------------------------------
+   .form-btn
+   Gradient submit button with hover lift.
+   ------------------------------------------------------------ */
+.form-btn {
+  margin-top: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* Hover: lift + stronger glow */
+.form-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+}
+
+/* Active (pressed) state */
+.form-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.35);
+}
+
+/* Focus ring for keyboard users */
+.form-btn:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   .form-preview
+   Live preview line under the form.
+   ------------------------------------------------------------ */
+.form-preview {
+  margin: 16px 0 0 0;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.form-preview__value {
+  font-weight: 700;
+  color: #1e40af;                            /* dark blue */
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — tighter on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .form-input,
+  .form-btn {
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .form-page            → full-screen wrapper with gradient bg
+     .form-card            → white card holding the form
+     .form-title           → main heading
+     .form-subtitle        → small subtitle
+     .form-body            → stacked form layout
+     .form-label           → uppercase label
+     .form-input           → text input with focus glow
+     .form-btn             → gradient submit button
+     .form-preview         → live preview line
+     .form-preview__value  → bold value inside preview
+   ============================================================ */

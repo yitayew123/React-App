@@ -1,0 +1,83 @@
+/* ============================================================
+   ReactProp.css
+   Styles for the <ReactProp /> parent component.
+
+   PURPOSE:
+   - Center the page content in a card-like wrapper.
+   - Stack the two <PropStudentCard /> children vertically.
+   - Compact spacing so both cards fit on one screen.
+
+   HOW IT CONNECTS TO JSX:
+   - Classes below are used in ReactProp.jsx via className.
+   - Imported in ReactProp.jsx:
+         import "./ReactProp.css";
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   Ensures the page can scroll vertically if content grows.
+   Prevents inherited overflow: hidden from clipping the page.
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;              /* grow with content, not fixed */
+  height: auto;                  /* override any locked height */
+  overflow-x: hidden;            /* block horizontal scroll only */
+  overflow-y: auto;              /* ✅ allow vertical scroll */
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;     /* soft page background */
+}
+
+/* ------------------------------------------------------------
+   .container — outer wrapper for the whole page
+   Used in JSX as: <div className="container">
+   ------------------------------------------------------------ */
+.container {
+  max-width: 760px;              /* room for two cards */
+  margin: 24px auto;             /* centered horizontally */
+  padding: 20px 22px;            /* inner spacing */
+  background-color: #ffffff;     /* white card */
+  border-radius: 12px;           /* rounded corners */
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08); /* soft shadow */
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;                /* base text color */
+  display: flex;                 /* vertical layout */
+  flex-direction: column;        /* top → bottom stack */
+  gap: 16px;                     /* space between cards */
+}
+
+/* ------------------------------------------------------------
+   .title — page heading
+   Used in JSX as: <h1 className="title">React Props Example</h1>
+   ------------------------------------------------------------ */
+.title {
+  font-size: 22px;               /* prominent heading */
+  font-weight: 700;              /* bold */
+  color: #1e3a8a;                /* deep blue */
+  text-align: center;            /* centered */
+  margin: 0 0 6px 0;             /* space below */
+  padding-bottom: 10px;          /* room for divider */
+  border-bottom: 2px solid #e5e7eb; /* subtle divider */
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — tighter spacing on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .container {
+    margin: 12px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Classes: .container, .title
+   ============================================================ */
