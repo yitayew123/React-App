@@ -1,0 +1,9 @@
+/* ============================================================
+   pages/Home.css
+   Styles unique to the Home page.
+   The .page / .page__* base styles come from App.css.
+   ============================================================ */
+
+.home-page {
+  background: linear-gradient(135deg, #eff6ff, #f8fafc);
+}

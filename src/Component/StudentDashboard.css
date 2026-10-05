@@ -1,0 +1,248 @@
+/* ============================================================
+   StudentDashboard.css
+   Styles for <StudentDashboard /> — a KPI dashboard card.
+
+   HOW IT CONNECTS TO JSX:
+   - Every class below is used in StudentDashboard.jsx via
+     className.
+   - Imported at the top of StudentDashboard.jsx:
+       import "./StudentDashboard.css";
+
+   DESIGN NOTES:
+   - Card with soft shadow + rounded corners.
+   - KPI grid: 2 columns on desktop, 1 column on mobile.
+   - Each KPI has a colored left accent (blue, green, purple,
+     amber) driven by a CSS custom property (--accent).
+   - Animated progress bar at the bottom.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS
+   Declared on the root block so every child can inherit them.
+   Change a value here → the whole card updates.
+   ------------------------------------------------------------ */
+.dashboard-card {
+  --text: #1f2937; /* base text color */
+  --muted: #6b7280; /* muted gray */
+  --border: #e5e7eb; /* light border */
+  --radius: 16px; /* card corner radius */
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* ------------------------------------------------------------
+   .dashboard-card — main wrapper
+   Used in JSX as: <div className="dashboard-card">
+   ------------------------------------------------------------ */
+.dashboard-card {
+  width: 100%;
+  max-width: 520px; /* readable width */
+  padding: 22px 22px 18px; /* inner spacing */
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+}
+
+/* ------------------------------------------------------------
+   HEADER — title + subtitle + live badge
+   ------------------------------------------------------------ */
+.dashboard-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.dashboard-card__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e3a8a; /* deep blue */
+  margin: 0 0 2px 0;
+  letter-spacing: 0.2px;
+}
+
+.dashboard-card__subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* "Live" pill on the right */
+.dashboard-card__badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #166534;
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+  padding: 3px 9px;
+  border-radius: 999px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Gentle pulse — signals live data */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ------------------------------------------------------------
+   KPI GRID — 2×2 on desktop
+   ------------------------------------------------------------ */
+.dashboard-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+/* ------------------------------------------------------------
+   .stat — one KPI card
+   Left accent color driven by --accent (set by modifiers)
+   ------------------------------------------------------------ */
+.stat {
+  position: relative;
+  padding: 12px 14px 12px 18px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent, #2563eb); /* fallback blue */
+}
+
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+}
+
+.stat__value {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #2563eb);
+  letter-spacing: 0.3px;
+  line-height: 1.15;
+}
+
+.stat__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------
+   COLOR MODIFIERS — only set --accent
+   ------------------------------------------------------------ */
+.stat--blue {
+  --accent: #2563eb;
+}
+.stat--green {
+  --accent: #16a34a;
+}
+.stat--purple {
+  --accent: #7c3aed;
+}
+.stat--amber {
+  --accent: #d97706;
+}
+
+/* ------------------------------------------------------------
+   PROGRESS BAR — active students
+   ------------------------------------------------------------ */
+.dashboard-card__progress {
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.progress-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.progress-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #16a34a; /* green for active */
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* width set inline via style={{ width: `${activePercent}%` }} */
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #22c55e, #15803d);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — 1 column on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .dashboard-card__grid {
+    grid-template-columns: 1fr;
+  }
+  .stat__value {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .dashboard-card              → main wrapper
+     .dashboard-card__header      → title + live badge
+     .dashboard-card__title       → heading
+     .dashboard-card__subtitle    → subtitle
+     .dashboard-card__badge       → "Live" pill (pulsing)
+     .dashboard-card__grid        → 2×2 KPI grid
+     .stat                        → one KPI card
+     .stat__value / .stat__label  → number + label
+     .stat--blue / --green / --purple / --amber
+                                  → color modifiers
+     .dashboard-card__progress    → progress section
+     .progress-row/-label/-value  → row above bar
+     .progress-track / -fill      → the bar itself
+   ============================================================ */

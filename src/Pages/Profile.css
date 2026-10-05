@@ -1,0 +1,27 @@
+/* ============================================================
+   pages/Profile.css
+   Styles unique to the Profile nested page.
+   ============================================================ */
+
+.sub-page {
+  color: #1e40af;
+}
+
+.sub-page__title {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.sub-page__desc {
+  font-size: 12px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.sub-page code {
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}

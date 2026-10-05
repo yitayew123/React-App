@@ -1,0 +1,27 @@
+/* ============================================================
+   pages/About.css
+   Styles unique to the About page.
+   ============================================================ */
+
+.about-page {
+  background: linear-gradient(135deg, #b35e73, #2a5a8a);
+}
+
+/* Feature list */
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.about-list li {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}

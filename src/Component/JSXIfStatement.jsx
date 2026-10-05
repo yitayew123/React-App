@@ -62,17 +62,15 @@ function JSXIfStatement() {
     <div className="container">
       {/* Static heading — plain text, no condition needed. */}
       <h1 className="title">React JSX If Statements</h1>
+
       {/* ------------------------------------------------
           PATTERN 1: Ternary Operator
           Syntax: condition ? <TrueBranch /> : <FalseBranch />
           Use when you need to render ONE of TWO options.
          ------------------------------------------------ */}
-      {isLoggedIn ? (
-        <Dashboard /> /* shown when isLoggedIn === true */
-      ) : (
-        <Login />
-      )}{" "}
-      /* shown when isLoggedIn === false */
+      {/* Ternary: shows Dashboard when logged in, Login otherwise */}
+      {isLoggedIn ? <Dashboard /> : <Login />}
+
       {/* ------------------------------------------------
           PATTERN 2: AND (&&) Operator
           Syntax: condition && <Something />
@@ -80,12 +78,14 @@ function JSXIfStatement() {
           If condition is false → nothing renders.
          ------------------------------------------------ */}
       {isAdmin && <h3 className="admin-panel">Admin Panel</h3>}
+
       {/* ------------------------------------------------
           PATTERN 3: Variable Rendering
           The `grade` variable was computed with if / else
           OUTSIDE the JSX. Here we simply insert its value.
          ------------------------------------------------ */}
       <h3 className="grade-text">Grade: {grade}</h3>
+
       {/* ------------------------------------------------
           PATTERN 4: Ternary returning null
           When you have NO false branch, return null.

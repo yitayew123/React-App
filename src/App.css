@@ -1,4 +1,35 @@
-/* App.css */
+/* ============================================================
+   App.css
+   GLOBAL + LAYOUT STYLES for the multi-demo switcher.
+
+   FILE ORGANIZATION:
+   This file is grouped into sections by WHAT they style:
+
+     §1  Modal trigger button   → used by App.jsx's modal launcher
+     §2  Dashboard layout       → used by an earlier App.jsx version
+                                   (kept for reference, not active)
+     §3  Student list (legacy)  → used by an earlier dashboard demo
+     §4  Toast (legacy)         → success notification style
+     §5  Global reset           → applies to <html>, <body>, #root
+     §6  App shell              → sidebar + content grid
+     §7  Sidebar                → brand, nav buttons, footer
+     §8  Main content area      → header badge + active demo
+     §9  Launcher wrappers      → used by modal launchers + prop-card launcher
+     §10 Layout demo            → Header + StudentCard + Footer wrapper
+     §11 Responsive rules       → media queries
+     §12 Suspense fallback      → spinner shown for lazy dashboards
+     §13 Error boundary         → fallback when a chunk fails
+
+   HOW TO USE THIS COMMENT MAP:
+   - Search for the class you're wondering about.
+   - The comment above each rule says where it is used.
+   ============================================================ */
+
+/* ============================================================
+   §1 — MODAL TRIGGER BUTTON
+   Used in: App.jsx → any launcher that opens a modal.
+   Currently referenced by: earlier version of the modal demo.
+   ============================================================ */
 .open-modal-btn {
   padding: 12px 22px;
   font-size: 14px;
@@ -19,12 +50,18 @@
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
 }
 
-/* App.css — dashboard layout */
+/* ============================================================
+   §2 — DASHBOARD LAYOUT (LEGACY)
+   Used in: an older standalone dashboard App.jsx.
+   Kept for reference; the current switcher uses .app-shell.
+   ============================================================ */
 
+/* ---------- Global reset (see also §5 for the active one) ---------- */
 * {
   box-sizing: border-box;
 }
 
+/* Applies to: every element in the document */
 html,
 body,
 #root {
@@ -35,12 +72,14 @@ body,
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
 
+/* Applies to: old top-level wrapper <div className="App"> */
 .App {
   max-width: 640px;
   margin: 40px auto;
   padding: 24px;
 }
 
+/* Applies to: old page header inside dashboard demo */
 .page-header {
   margin-bottom: 20px;
 }
@@ -58,7 +97,12 @@ body,
   margin: 0;
 }
 
-/* ---------- Student list ---------- */
+/* ============================================================
+   §3 — STUDENT LIST (used by Modal 2 launcher)
+   Actually STILL USED: ModalExample2Launcher can adopt these,
+   but currently the launcher uses .launcher-list-* classes.
+   Kept as alternative markup.
+   ============================================================ */
 .student-list {
   list-style: none;
   padding: 0;
@@ -123,6 +167,7 @@ body,
   letter-spacing: 0.3px;
 }
 
+/* Delete button on a student row (legacy) */
 .row-delete-btn {
   padding: 7px 14px;
   font-size: 12px;
@@ -143,6 +188,7 @@ body,
   border-color: #dc2626;
 }
 
+/* Empty-state placeholder for lists */
 .empty-state {
   text-align: center;
   padding: 30px 20px;
@@ -153,7 +199,12 @@ body,
   border-radius: 12px;
 }
 
-/* ---------- Toast ---------- */
+/* ============================================================
+   §4 — TOAST (success notification)
+   Used in: any launcher showing a temporary success message
+   (e.g., ModalExample2Launcher after a delete).
+   Rendered as: <div className="toast">…</div>
+   ============================================================ */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -182,12 +233,10 @@ body,
 }
 
 /* ============================================================
-   App.css
-   Layout for the multi-demo switcher.
-   Sidebar on the left, demo content on the right.
+   §5 — GLOBAL RESET (ACTIVE)
+   Applies to: <html>, <body>, #root — every page in the app.
+   Sets background + font family for the whole application.
    ============================================================ */
-
-/* ---------- Global reset ---------- */
 * {
   box-sizing: border-box;
 }
@@ -199,25 +248,28 @@ body,
   height: auto;
   margin: 0;
   padding: 0;
-  background-color: #eef2ff;
+  background-color: #eef2ff; /* app-wide light indigo */
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto; /* allow vertical scroll */
 }
 
-/* ------------------------------------------------------------
-   .app-shell — sidebar + content grid
-   ------------------------------------------------------------ */
+/* ============================================================
+   §6 — APP SHELL (sidebar + content grid)
+   Applies to: <div className="app-shell"> in App.jsx
+   ============================================================ */
 .app-shell {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 260px 1fr; /* sidebar | content */
   min-height: 100vh;
   gap: 0;
 }
 
-/* ------------------------------------------------------------
-   SIDEBAR
-   ------------------------------------------------------------ */
+/* ============================================================
+   §7 — SIDEBAR
+   Applies to: <aside className="app-sidebar"> and its children
+   in App.jsx (brand, nav, buttons, footer text).
+   ============================================================ */
 .app-sidebar {
   display: flex;
   flex-direction: column;
@@ -228,10 +280,11 @@ body,
   border-right: 1px solid #1f2b3e;
   position: sticky;
   top: 0;
-  height: 100vh; /* fixed sidebar */
+  height: 100vh; /* fixed-height sidebar */
   overflow-y: auto;
 }
 
+/* Brand line ("⚛️ React Demos") */
 .app-brand {
   display: flex;
   align-items: center;
@@ -243,6 +296,7 @@ body,
   letter-spacing: 0.3px;
 }
 
+/* Spinning atom icon */
 .app-brand__icon {
   font-size: 20px;
   animation: brand-spin 8s linear infinite;
@@ -254,7 +308,7 @@ body,
   }
 }
 
-/* Nav — vertical list of buttons */
+/* Vertical list of nav buttons */
 .app-nav {
   display: flex;
   flex-direction: column;
@@ -262,6 +316,7 @@ body,
   flex: 1;
 }
 
+/* One nav button — e.g. "JSX Example" */
 .app-nav__item {
   text-align: left;
   padding: 9px 12px;
@@ -283,6 +338,7 @@ body,
   color: #ffffff;
 }
 
+/* The currently selected demo button */
 .app-nav__item.is-active {
   background: linear-gradient(135deg, #2563eb, #1e40af);
   color: #ffffff;
@@ -290,6 +346,7 @@ body,
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
 
+/* Small line at the bottom of the sidebar */
 .app-sidebar__footer {
   font-size: 11px;
   color: #64748b;
@@ -299,16 +356,19 @@ body,
   padding-top: 12px;
 }
 
-/* ------------------------------------------------------------
-   MAIN CONTENT AREA
-   ------------------------------------------------------------ */
+/* ============================================================
+   §8 — MAIN CONTENT AREA
+   Applies to: <main className="app-content"> and its children
+   in App.jsx (badge + title + demo body).
+   ============================================================ */
 .app-content {
   display: flex;
   flex-direction: column;
   padding: 22px 26px;
-  min-width: 0; /* allow flex children to shrink */
+  min-width: 0; /* allow flex shrink */
 }
 
+/* Row above the demo: "Current" badge + demo name */
 .app-content__header {
   display: flex;
   align-items: center;
@@ -316,6 +376,7 @@ body,
   margin-bottom: 18px;
 }
 
+/* Small "Current" pill */
 .app-content__badge {
   font-size: 10px;
   font-weight: 700;
@@ -328,6 +389,7 @@ body,
   border-radius: 999px;
 }
 
+/* The label of the currently shown demo */
 .app-content__title {
   font-size: 20px;
   font-weight: 800;
@@ -335,6 +397,7 @@ body,
   margin: 0;
 }
 
+/* Body wrapper around the active demo */
 .app-content__body {
   flex: 1;
   display: flex;
@@ -343,9 +406,13 @@ body,
   padding: 8px 0;
 }
 
-/* ------------------------------------------------------------
-   LAUNCHER WRAPPERS (used by modal demos + list demos)
-   ------------------------------------------------------------ */
+/* ============================================================
+   §9 — LAUNCHER WRAPPERS
+   Used by: App.jsx → ModalExampleLauncher,
+                       ModalExample2Launcher,
+                       PropStudentCardLauncher.
+   Renders: <div className="launcher"> or "prop-launcher"
+   ============================================================ */
 .launcher {
   width: 100%;
   max-width: 520px;
@@ -369,6 +436,7 @@ body,
   margin: 0 0 16px 0;
 }
 
+/* Base button inside a launcher */
 .launcher-btn {
   padding: 10px 18px;
   font-size: 13px;
@@ -381,6 +449,7 @@ body,
     box-shadow 0.2s ease;
 }
 
+/* Primary button — used by "Register Student" etc. */
 .launcher-btn--primary {
   background: linear-gradient(135deg, #2563eb, #1e40af);
   color: #ffffff;
@@ -392,6 +461,7 @@ body,
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
 }
 
+/* Danger button — used by "Delete" in ModalExample2Launcher */
 .launcher-btn--danger {
   background: #fee2e2;
   color: #b91c1c;
@@ -405,7 +475,7 @@ body,
   color: #ffffff;
 }
 
-/* Mini student list inside Modal 2 launcher */
+/* Mini student list inside ModalExample2Launcher */
 .launcher-list {
   list-style: none;
   padding: 0;
@@ -438,6 +508,7 @@ body,
   border-radius: 10px;
 }
 
+/* Success message shown after a delete */
 .launcher-toast {
   margin-top: 14px;
   padding: 10px 16px;
@@ -451,8 +522,19 @@ body,
 }
 
 /* ------------------------------------------------------------
-   LAYOUT LAUNCHER (Header + Card + Footer demo)
+   PROP LAUNCHER — used by PropStudentCardLauncher
+   (the grid of two PropStudentCard components).
+   NOT PRESENT IN THIS FILE YET — the grid classes below
+   belong in your project if you use them:
+       .prop-launcher
+       .prop-launcher__grid
    ------------------------------------------------------------ */
+
+/* ============================================================
+   §10 — LAYOUT DEMO WRAPPER
+   Used by: App.jsx → LayoutLauncher.
+   Wraps Header + StudentCard + Footer in one card.
+   ============================================================ */
 .layout-demo {
   display: flex;
   flex-direction: column;
@@ -465,18 +547,21 @@ body,
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
+/* Middle area of the layout demo */
 .layout-main {
   padding: 20px;
   display: flex;
   justify-content: center;
 }
 
-/* ------------------------------------------------------------
-   RESPONSIVE — stack sidebar on small screens
-   ------------------------------------------------------------ */
+/* ============================================================
+   §11 — RESPONSIVE RULES
+   Applies when the viewport is <= 820px wide (mobile/tablet).
+   Affects: sidebar → becomes a horizontal bar at the top.
+   ============================================================ */
 @media (max-width: 820px) {
   .app-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* stack sidebar over content */
   }
 
   .app-sidebar {
@@ -499,3 +584,108 @@ body,
     padding: 16px;
   }
 }
+
+/* ============================================================
+   §12 — SUSPENSE FALLBACK
+   Used by: App.jsx → <Suspense fallback={<LoadingFallback />}>
+   Shown while a lazy demo chunk is downloading.
+   Visible for ~1.2 s on StudentDashboard and StudentReports
+   because they use slowLazy.
+   ============================================================ */
+.loading-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 14px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* The spinning circle */
+.loading-spinner {
+  width: 42px;
+  height: 42px;
+  border: 4px solid #dbeafe;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* "Loading <Demo Name>…" text */
+.loading-text strong {
+  color: #1e40af;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   §13 — ERROR BOUNDARY
+   Used by: App.jsx → <ErrorBoundary> above <Suspense>.
+   Shown when a lazy chunk fails to load (e.g., offline).
+   ============================================================ */
+.error-boundary {
+  max-width: 480px;
+  padding: 22px 24px;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 12px;
+  color: #7f1d1d;
+  text-align: center;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.error-boundary h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.error-boundary p {
+  margin: 0 0 14px 0;
+  font-size: 12px;
+  word-break: break-word;
+}
+
+/* ============================================================
+   END OF FILE
+   QUICK REFERENCE:
+
+   Class prefix           → Used by
+   ------------------------------------------------------------
+   .open-modal-btn        → generic modal trigger (legacy)
+   .App / .page-*         → legacy dashboard wrapper
+   .student-* / .empty-*  → legacy student list
+   .row-delete-btn        → legacy row action
+   .toast                 → success notification
+   html/body/#root        → global reset (whole app)
+   .app-shell             → App.jsx outer grid
+   .app-sidebar / .app-nav__item / .app-brand
+                          → App.jsx sidebar
+   .app-content__*        → App.jsx main content header
+   .launcher* / .prop-launcher__grid
+                          → App.jsx launcher wrappers (modal 1, modal 2, prop-card)
+   .layout-demo / .layout-main
+                          → App.jsx LayoutLauncher (Header + Card + Footer)
+   .loading-fallback / .loading-spinner
+                          → Suspense fallback for lazy demos
+   .error-boundary        → ErrorBoundary fallback
+   @media (max-width: 820px)
+                          → responsive rules for the app shell
+   ============================================================ */

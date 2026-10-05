@@ -1,0 +1,25 @@
+/* ============================================================
+   pages/Contact.css
+   Styles unique to the Contact page.
+   ============================================================ */
+
+.contact-page {
+  background: linear-gradient(135deg, #fef3c7, #f8fafc);
+}
+
+/* Row of buttons */
+.contact-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Inline code pill */
+.contact-page code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #1e40af;
+}

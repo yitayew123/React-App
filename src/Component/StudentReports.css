@@ -1,0 +1,298 @@
+/* ============================================================
+   StudentReports.css
+   Styles for <StudentReports /> — a pass/fail report card.
+
+   HOW IT CONNECTS TO JSX:
+   - Every class below is used in StudentReports.jsx via
+     className.
+   - Imported at the top of StudentReports.jsx:
+       import "./StudentReports.css";
+
+   DESIGN NOTES:
+   - Same visual language as StudentDashboard (same radius,
+     shadow, typography) so both feel like sibling cards.
+   - Horizontal CSS-only bar chart — no charting library.
+   - Status pills for the recent reports feed.
+   - Color is driven by modifiers (--bar-color) so one base
+     style covers many variants.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS
+   Declared on the root block so every child can inherit them.
+   Change a value here → the whole card updates.
+   ------------------------------------------------------------ */
+.reports-card {
+  --text: #1f2937; /* base text color */
+  --muted: #6b7280; /* muted gray */
+  --border: #e5e7eb; /* light border */
+  --radius: 16px; /* card corner radius */
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* ------------------------------------------------------------
+   .reports-card — main wrapper
+   Used in JSX as: <div className="reports-card">
+   ------------------------------------------------------------ */
+.reports-card {
+  width: 100%;
+  max-width: 520px; /* readable width */
+  padding: 22px 22px 18px; /* inner spacing */
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+}
+
+/* ------------------------------------------------------------
+   HEADER — title + subtitle + pass-rate badge
+   ------------------------------------------------------------ */
+.reports-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.reports-card__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e3a8a; /* deep blue */
+  margin: 0 0 2px 0;
+  letter-spacing: 0.2px;
+}
+
+.reports-card__subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Big green pass-rate badge on the right */
+.reports-card__passrate {
+  font-size: 18px;
+  font-weight: 800;
+  color: #16a34a; /* green */
+  background-color: #dcfce7; /* light green */
+  border: 1px solid #86efac; /* soft green border */
+  padding: 6px 12px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.reports-card__passrate small {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #15803d; /* darker green */
+}
+
+/* ------------------------------------------------------------
+   BAR CHART — CSS-only, no library
+   Each bar row uses a 3-column grid:
+       label  ·  track  ·  value
+   ------------------------------------------------------------ */
+.reports-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px; /* label · track · value */
+  align-items: center;
+  gap: 10px;
+}
+
+.bar__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Gray track behind the colored fill */
+.bar__track {
+  height: 10px;
+  background-color: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Colored fill — width is set inline via style={{ width }}.
+   --bar-color is provided by the modifier classes below. */
+.bar__fill {
+  height: 100%;
+  width: 0; /* overridden inline */
+  border-radius: 999px;
+  background: var(--bar-color, #2563eb); /* fallback blue */
+  transition: width 0.6s ease;
+}
+
+.bar__value {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--bar-color, #2563eb);
+  text-align: right;
+}
+
+/* ------------------------------------------------------------
+   BAR COLOR MODIFIERS — only set --bar-color.
+   Add new colors here without touching .bar base rules.
+   ------------------------------------------------------------ */
+.bar--green {
+  --bar-color: #16a34a;
+}
+.bar--red {
+  --bar-color: #dc2626;
+}
+.bar--amber {
+  --bar-color: #d97706;
+}
+
+/* ------------------------------------------------------------
+   RECENT REPORTS FEED
+   ------------------------------------------------------------ */
+.reports-list {
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.reports-list__title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px 0;
+}
+
+.reports-list__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* One row: term · status · date */
+.report-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background-color: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.report-item:hover {
+  background-color: #eff6ff; /* light blue on hover */
+}
+
+.report-item__term {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.report-item__date {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "Courier New", monospace;
+}
+
+/* ------------------------------------------------------------
+   STATUS PILLS
+   Class name generated in JSX:
+       "report-item__status report-item__status--" + status.toLowerCase()
+   → --published / --draft / --pending
+   ------------------------------------------------------------ */
+.report-item__status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.report-item__status--published {
+  color: #166534; /* dark green */
+  background-color: #dcfce7; /* light green */
+  border-color: #86efac;
+}
+
+.report-item__status--draft {
+  color: #1e40af; /* dark blue */
+  background-color: #dbeafe; /* light blue */
+  border-color: #93c5fd;
+}
+
+.report-item__status--pending {
+  color: #92400e; /* dark amber */
+  background-color: #fef3c7; /* light amber */
+  border-color: #fcd34d;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — tighter on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .bar {
+    grid-template-columns: 90px 1fr 34px; /* tighter */
+  }
+
+  .bar__label {
+    font-size: 11px;
+  }
+
+  .reports-card__passrate {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  /* Hide the date column on mobile */
+  .report-item {
+    grid-template-columns: 1fr auto;
+  }
+
+  .report-item__date {
+    display: none;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .reports-card                    → main wrapper
+     .reports-card__header            → title + pass-rate badge
+     .reports-card__title             → heading
+     .reports-card__subtitle          → subtitle
+     .reports-card__passrate          → big green rate badge
+     .reports-chart                   → bar chart container
+     .bar                             → one row (label · track · value)
+     .bar__label / -track / -fill / -value
+     .bar--green / --red / --amber    → color modifiers (--bar-color)
+     .reports-list / __title / __items
+     .report-item + __term / __status / __date
+     .report-item__status--published / --draft / --pending
+   ============================================================ */

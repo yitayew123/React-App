@@ -1,0 +1,86 @@
+/* ============================================================
+   Component/Navbar.css
+   Sticky top navigation bar for the whole router app.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   .navbar — main bar
+   ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+  position: sticky;                    /* stays at the top */
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+}
+
+/* Brand — "⚛️ React Router Demo" */
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+/* Spinning atom icon */
+.navbar__icon {
+  font-size: 20px;
+  animation: navbar-spin 8s linear infinite;
+}
+
+@keyframes navbar-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Nav list */
+.navbar__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Base link style */
+.navbar__link {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar__link:hover {
+  background-color: #1f2b3e;
+  color: #ffffff;
+}
+
+/* Active link — NavLink adds the "active" class */
+.navbar__link.active {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* Responsive — stack on small screens */
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .navbar__nav {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,12 @@
+/* ============================================================
+   pages/Settings.css
+   Styles unique to the Settings nested page.
+   Overrides the base .sub-page colors from Profile.css.
+   ============================================================ */
+
+.settings-page .sub-page__title {
+  color: #166534;
+} /* dark green */
+.settings-page .sub-page__desc {
+  color: #374151;
+} /* dark gray */

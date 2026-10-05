@@ -1,0 +1,262 @@
+/* ============================================================
+   Component/Hook.css
+   Styles for the <HookDemo /> component.
+
+   HOW IT CONNECTS TO JSX:
+   - Classes below are used in Hook.jsx via className.
+   - Imported in Hook.jsx:
+       import "./Hook.css";
+
+   DESIGN NOTES:
+   - Same visual family as the other demos: white cards,
+     soft shadows, indigo accents.
+   - Each hook is grouped into its own "card" so students can
+     see which section demonstrates which hook.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SCROLL FIX
+   Allows the page to scroll when content grows.
+   ------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #eef2ff;
+}
+
+/* ------------------------------------------------------------
+   .hook-page — outer wrapper for all hook sections
+   ------------------------------------------------------------ */
+.hook-page {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 20px 22px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ------------------------------------------------------------
+   .hook-title — main heading
+   ------------------------------------------------------------ */
+.hook-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;
+  text-align: center;
+  margin: 0 0 6px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ------------------------------------------------------------
+   .hook-card — one card per hook section
+   ------------------------------------------------------------ */
+.hook-card {
+  padding: 16px 18px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.hook-card__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+/* ------------------------------------------------------------
+   .hook-row — inline layout for input + buttons + badge
+   ------------------------------------------------------------ */
+.hook-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ------------------------------------------------------------
+   .hook-input — controlled text input
+   ------------------------------------------------------------ */
+.hook-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #1f2937;
+  background-color: #f8fafc;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hook-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  background-color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   .hook-btn — base button used everywhere in this demo
+   ------------------------------------------------------------ */
+.hook-btn {
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Primary — gradient blue */
+.hook-btn--primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.hook-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+}
+
+/* Ghost — outline */
+.hook-btn--ghost {
+  background-color: #ffffff;
+  color: #2563eb;
+  border: 1.5px solid #2563eb;
+}
+
+.hook-btn--ghost:hover {
+  background-color: #eff6ff;
+}
+
+/* Danger — outline red (used for reset) */
+.hook-btn--danger {
+  background-color: #ffffff;
+  color: #b91c1c;
+  border: 1.5px solid #fca5a5;
+}
+
+.hook-btn--danger:hover {
+  background-color: #fee2e2;
+}
+
+/* ------------------------------------------------------------
+   .hook-badge — small pill showing a numeric value
+   ------------------------------------------------------------ */
+.hook-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+/* Amber variant — used for reducer count */
+.hook-badge--amber {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+/* ------------------------------------------------------------
+   .hook-preview — inline text showing a live value
+   ------------------------------------------------------------ */
+.hook-preview {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.hook-preview strong {
+  color: #1e40af;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   .hook-child — the useContext demo
+   ------------------------------------------------------------ */
+.hook-child {
+  padding: 12px 14px;
+  background-color: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+}
+
+.hook-child__title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #166534;
+  margin: 0 0 4px 0;
+}
+
+.hook-child__value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — full-width on small screens
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .hook-page {
+    margin: 12px;
+    padding: 16px;
+  }
+
+  .hook-title {
+    font-size: 18px;
+  }
+
+  .hook-btn {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   END OF FILE
+   Class summary:
+     .hook-page            → outer wrapper
+     .hook-title           → main heading
+     .hook-card            → section card per hook
+     .hook-card__title     → section label
+     .hook-row             → flex row of inputs/buttons
+     .hook-input           → text input
+     .hook-btn             → base button
+     .hook-btn--primary    → blue gradient
+     .hook-btn--ghost      → outlined blue
+     .hook-btn--danger     → outlined red
+     .hook-badge           → blue pill
+     .hook-badge--amber    → amber pill (reducer count)
+     .hook-preview         → live value text
+     .hook-child           → useContext demo box
+     .hook-child__title    → child heading
+     .hook-child__value    → child value
+   ============================================================ */
