@@ -1,18 +1,4 @@
-/* ============================================================
-   JSXFormPartTwo.css
-   Attractive registration form for <JSXFormPartTwo />.
-
-   DESIGN NOTES:
-   - Full-page indigo gradient background
-   - Card with soft shadow and rounded corners
-   - Each section wrapped in a fieldset with legend
-   - Focus glow on inputs, hover-lift on submit button
-   - Responsive: single column on all screens
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   PAGE SCROLL FIX
-   ------------------------------------------------------------ */
+/* Page layout */
 html,
 body,
 #root {
@@ -22,12 +8,10 @@ body,
   overflow-y: auto;
   margin: 0;
   padding: 0;
-  background-color: #eef2ff; /* indigo page bg */
+  background-color: #eef2ff;
 }
 
-/* ------------------------------------------------------------
-   .reg-page — full-screen center wrapper
-   ------------------------------------------------------------ */
+/* Registration card */
 .reg-page {
   min-height: 100vh;
   display: flex;
@@ -43,12 +27,9 @@ body,
   );
 }
 
-/* ------------------------------------------------------------
-   .reg-card — the white card
-   ------------------------------------------------------------ */
 .reg-card {
   width: 100%;
-  max-width: 620px; /* readable width */
+  max-width: 620px;
   padding: 28px 26px 24px;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 18px;
@@ -58,9 +39,7 @@ body,
     0 2px 6px rgba(30, 41, 59, 0.05);
 }
 
-/* ------------------------------------------------------------
-   HEADER
-   ------------------------------------------------------------ */
+/* Header */
 .reg-header {
   text-align: center;
   margin-bottom: 20px;
@@ -69,7 +48,7 @@ body,
 .reg-title {
   font-size: 24px;
   font-weight: 800;
-  color: #1e3a8a; /* deep blue */
+  color: #1e3a8a;
   margin: 0 0 4px 0;
   letter-spacing: 0.2px;
 }
@@ -80,24 +59,19 @@ body,
   margin: 0;
 }
 
-/* Red asterisk for required fields */
 .reg-required {
   color: #dc2626;
   font-weight: 700;
 }
 
-/* ------------------------------------------------------------
-   FORM LAYOUT
-   ------------------------------------------------------------ */
+/* Form layout */
 .reg-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ------------------------------------------------------------
-   FIELDSET — visual grouping for sections
-   ------------------------------------------------------------ */
+/* Form sections */
 .reg-fieldset {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -108,15 +82,13 @@ body,
 .reg-legend {
   font-size: 12px;
   font-weight: 700;
-  color: #2563eb; /* blue accent */
+  color: #2563eb;
   text-transform: uppercase;
   letter-spacing: 0.6px;
   padding: 0 6px;
 }
 
-/* ------------------------------------------------------------
-   FIELD — a label + input pair
-   ------------------------------------------------------------ */
+/* Fields */
 .reg-field {
   display: flex;
   flex-direction: column;
@@ -124,7 +96,6 @@ body,
   margin-bottom: 10px;
 }
 
-/* Last field inside a fieldset has no bottom margin */
 .reg-field:last-child {
   margin-bottom: 0;
 }
@@ -132,12 +103,10 @@ body,
 .reg-label {
   font-size: 12px;
   font-weight: 600;
-  color: #374151; /* dark gray */
+  color: #374151;
 }
 
-/* ------------------------------------------------------------
-   INPUTS, SELECT, TEXTAREA — shared style
-   ------------------------------------------------------------ */
+/* Text fields */
 .reg-input,
 .reg-select,
 .reg-textarea {
@@ -149,7 +118,7 @@ body,
   border: 1.5px solid #d1d5db;
   border-radius: 10px;
   outline: none;
-  font-family: inherit; /* textarea fix */
+  font-family: inherit;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -173,15 +142,12 @@ body,
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
-/* Textarea: allow vertical resize only */
 .reg-textarea {
   resize: vertical;
   min-height: 70px;
 }
 
-/* ------------------------------------------------------------
-   RADIO GROUP
-   ------------------------------------------------------------ */
+/* Radio options */
 .reg-radio-group {
   display: flex;
   gap: 18px;
@@ -210,13 +176,11 @@ body,
 }
 
 .reg-radio input[type="radio"] {
-  accent-color: #2563eb; /* blue native control */
-  transform: scale(1.15); /* slightly bigger */
+  accent-color: #2563eb;
+  transform: scale(1.15);
 }
 
-/* ------------------------------------------------------------
-   CHECKBOX GROUP
-   ------------------------------------------------------------ */
+/* Checkbox options */
 .reg-checkbox-group {
   display: flex;
   gap: 18px;
@@ -249,16 +213,14 @@ body,
   transform: scale(1.15);
 }
 
-/* ------------------------------------------------------------
-   SUBMIT BUTTON
-   ------------------------------------------------------------ */
+/* Submit button */
 .reg-submit {
   margin-top: 4px;
   padding: 12px 18px;
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, #12ab4f, #15b965);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -284,9 +246,7 @@ body,
   outline-offset: 2px;
 }
 
-/* ------------------------------------------------------------
-   LIVE PREVIEW (collapsible)
-   ------------------------------------------------------------ */
+/* Live data preview */
 .reg-preview {
   margin-top: 18px;
   font-size: 12px;
@@ -310,14 +270,12 @@ body,
   border-radius: 10px;
   font-size: 12px;
   color: #1f2937;
-  overflow-x: auto; /* wide JSON scrolls */
-  white-space: pre-wrap; /* wrap long lines */
+  overflow-x: auto;
+  white-space: pre-wrap;
   word-break: break-word;
 }
 
-/* ------------------------------------------------------------
-   RESPONSIVE
-   ------------------------------------------------------------ */
+/* Small screens */
 @media (max-width: 480px) {
   .reg-card {
     padding: 20px 16px;
@@ -337,28 +295,3 @@ body,
     gap: 10px;
   }
 }
-
-/* ============================================================
-   END OF FILE
-   Class summary:
-     .reg-page               → full-screen wrapper with gradient bg
-     .reg-card               → white card holding the form
-     .reg-header             → title + subtitle block
-     .reg-title              → main heading
-     .reg-subtitle           → small subtitle
-     .reg-required           → red asterisk
-     .reg-form               → form layout
-     .reg-fieldset           → section wrapper
-     .reg-legend             → section heading
-     .reg-field              → label + input pair
-     .reg-label              → field label
-     .reg-input              → text/email/number input
-     .reg-select             → dropdown
-     .reg-textarea           → multi-line input
-     .reg-radio-group        → row of radio options
-     .reg-radio              → single radio wrapper
-     .reg-checkbox-group     → row of checkbox options
-     .reg-checkbox           → single checkbox wrapper
-     .reg-submit             → gradient submit button
-     .reg-preview            → collapsible JSON preview
-   ============================================================ */

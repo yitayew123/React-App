@@ -1,28 +1,8 @@
-// ============================================================
-// JSXFormPartTwo.jsx
-// Student Registration Form — a more advanced CONTROLLED FORM.
-//
-// KEY IDEAS:
-//   - All form fields are stored in ONE state object.
-//   - handleChange uses event.target.name + value + computed keys
-//     to update the right field generically.
-//   - Checkbox groups store an ARRAY of selected values.
-//   - Radio buttons store a SINGLE string value.
-//   - Select dropdown uses the same handleChange as text inputs.
-//   - On submit: preventDefault + validate + process.
-//
-// WHY ONE STATE OBJECT?
-//   Simpler to reset, submit, and validate as a single unit.
-// ============================================================
-
+// Student registration form with controlled fields and basic validation.
 import { useState } from "react";
 import "./JSXFormPartTwo.css";
 
-// ============================================================
-// JSXFormPartTwo component
-// ============================================================
 function JSXFormPartTwo() {
-  // ---------- One state object for all form fields ----------
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -30,36 +10,29 @@ function JSXFormPartTwo() {
     department: "",
     gender: "",
     address: "",
-    skills: [], // array (multiple checkboxes)
+    skills: [],
   });
 
-  // ---------- Generic change handler ----------
-  // Handles text, email, number, select, and radio inputs.
-  // Uses the "name" attribute to know which field to update.
+  // Use each field's name to update its value in the shared state object.
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    // Computed property key [name] updates only that field.
-    // Spread ...formData keeps all other fields intact.
     setFormData({
       ...formData,
       [name]: value,
     });
   };
 
-  // ---------- Checkbox handler (special case) ----------
-  // Checkboxes ADD or REMOVE values from the skills array.
+  // Keep the selected checkboxes in the skills array.
   const handleSkillChange = (event) => {
     const { value, checked } = event.target;
 
     if (checked) {
-      // Add the skill if the box was just checked
       setFormData({
         ...formData,
         skills: [...formData.skills, value],
       });
     } else {
-      // Remove the skill if the box was unchecked
       setFormData({
         ...formData,
         skills: formData.skills.filter((skill) => skill !== value),
@@ -67,29 +40,21 @@ function JSXFormPartTwo() {
     }
   };
 
-  // ---------- Submit handler ----------
   const handleSubmit = (event) => {
-    event.preventDefault(); // stop page reload
+    event.preventDefault();
 
-    // Validate required fields (marked with * in the UI)
     if (!formData.fullName || !formData.email || !formData.department) {
       alert("Please fill all required fields");
       return;
     }
 
-    // Success
     alert("Registration Successful");
     console.log("Submitted data:", formData);
   };
 
-  // ============================================================
-  // JSX returned by the component.
-  // ============================================================
   return (
-    // Full-page wrapper; className links to .reg-page in CSS
     <div className="reg-page">
       <div className="reg-card">
-        {/* Header */}
         <header className="reg-header">
           <h1 className="reg-title">Student Registration</h1>
           <p className="reg-subtitle">
@@ -99,13 +64,10 @@ function JSXFormPartTwo() {
         </header>
 
         <form className="reg-form" onSubmit={handleSubmit}>
-          {/* ============================================================
-              SECTION 1 — Personal Info
-             ============================================================ */}
+          {/* Personal information */}
           <fieldset className="reg-fieldset">
             <legend className="reg-legend">Personal Information</legend>
 
-            {/* Full Name */}
             <div className="reg-field">
               <label className="reg-label" htmlFor="fullName">
                 Full Name <span className="reg-required">*</span>
@@ -114,7 +76,7 @@ function JSXFormPartTwo() {
                 className="reg-input"
                 id="fullName"
                 type="text"
-                name="fullName" /* matches state key */
+                name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="e.g., Abebe Kebede"
@@ -122,7 +84,6 @@ function JSXFormPartTwo() {
               />
             </div>
 
-            {/* Email */}
             <div className="reg-field">
               <label className="reg-label" htmlFor="email">
                 Email <span className="reg-required">*</span>
@@ -139,7 +100,6 @@ function JSXFormPartTwo() {
               />
             </div>
 
-            {/* Age */}
             <div className="reg-field">
               <label className="reg-label" htmlFor="age">
                 Age
@@ -157,7 +117,6 @@ function JSXFormPartTwo() {
               />
             </div>
 
-            {/* Department (select) */}
             <div className="reg-field">
               <label className="reg-label" htmlFor="department">
                 Department <span className="reg-required">*</span>
@@ -179,9 +138,7 @@ function JSXFormPartTwo() {
             </div>
           </fieldset>
 
-          {/* ============================================================
-              SECTION 2 — Gender (radio buttons)
-             ============================================================ */}
+          {/* Gender options */}
           <fieldset className="reg-fieldset">
             <legend className="reg-legend">Gender</legend>
 
@@ -191,7 +148,7 @@ function JSXFormPartTwo() {
                   type="radio"
                   name="gender"
                   value="Male"
-                  checked={formData.gender === "Male"} /* controlled radio */
+                  checked={formData.gender === "Male"}
                   onChange={handleChange}
                 />
                 <span>Male</span>
@@ -210,9 +167,7 @@ function JSXFormPartTwo() {
             </div>
           </fieldset>
 
-          {/* ============================================================
-              SECTION 3 — Skills (checkboxes)
-             ============================================================ */}
+          {/* Skills */}
           <fieldset className="reg-fieldset">
             <legend className="reg-legend">Skills</legend>
 
@@ -222,7 +177,6 @@ function JSXFormPartTwo() {
                   <input
                     type="checkbox"
                     value={skill}
-                    /* checked when this skill is in the array */
                     checked={formData.skills.includes(skill)}
                     onChange={handleSkillChange}
                   />
@@ -232,9 +186,7 @@ function JSXFormPartTwo() {
             </div>
           </fieldset>
 
-          {/* ============================================================
-              SECTION 4 — Address
-             ============================================================ */}
+          {/* Address */}
           <fieldset className="reg-fieldset">
             <legend className="reg-legend">Address</legend>
 
@@ -254,15 +206,11 @@ function JSXFormPartTwo() {
             </div>
           </fieldset>
 
-          {/* ============================================================
-              SUBMIT
-             ============================================================ */}
           <button className="reg-submit" type="submit">
             Register Student
           </button>
         </form>
 
-        {/* ---------- Live data preview (for teaching) ---------- */}
         <details className="reg-preview">
           <summary>Live form data (click to expand)</summary>
           <pre>{JSON.stringify(formData, null, 2)}</pre>
@@ -272,6 +220,4 @@ function JSXFormPartTwo() {
   );
 }
 
-// Default export so App.jsx can import it:
-//     import JSXFormPartTwo from "./Component/JSXFormPartTwo.jsx";
 export default JSXFormPartTwo;

@@ -1,42 +1,17 @@
-/* ============================================================
-   StudentDashboard.css
-   Styles for <StudentDashboard /> — a KPI dashboard card.
-
-   HOW IT CONNECTS TO JSX:
-   - Every class below is used in StudentDashboard.jsx via
-     className.
-   - Imported at the top of StudentDashboard.jsx:
-       import "./StudentDashboard.css";
-
-   DESIGN NOTES:
-   - Card with soft shadow + rounded corners.
-   - KPI grid: 2 columns on desktop, 1 column on mobile.
-   - Each KPI has a colored left accent (blue, green, purple,
-     amber) driven by a CSS custom property (--accent).
-   - Animated progress bar at the bottom.
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   DESIGN TOKENS
-   Declared on the root block so every child can inherit them.
-   Change a value here → the whole card updates.
-   ------------------------------------------------------------ */
+/* Dashboard card theme values */
 .dashboard-card {
-  --text: #1f2937; /* base text color */
-  --muted: #6b7280; /* muted gray */
-  --border: #e5e7eb; /* light border */
-  --radius: 16px; /* card corner radius */
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --radius: 16px;
   --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
-/* ------------------------------------------------------------
-   .dashboard-card — main wrapper
-   Used in JSX as: <div className="dashboard-card">
-   ------------------------------------------------------------ */
+/* Main card */
 .dashboard-card {
   width: 100%;
-  max-width: 520px; /* readable width */
-  padding: 22px 22px 18px; /* inner spacing */
+  max-width: 520px;
+  padding: 22px 22px 18px;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -45,9 +20,7 @@
   color: var(--text);
 }
 
-/* ------------------------------------------------------------
-   HEADER — title + subtitle + live badge
-   ------------------------------------------------------------ */
+/* Header */
 .dashboard-card__header {
   display: flex;
   align-items: flex-start;
@@ -61,7 +34,7 @@
 .dashboard-card__title {
   font-size: 18px;
   font-weight: 800;
-  color: #1e3a8a; /* deep blue */
+  color: #1e3a8a;
   margin: 0 0 2px 0;
   letter-spacing: 0.2px;
 }
@@ -72,7 +45,7 @@
   margin: 0;
 }
 
-/* "Live" pill on the right */
+/* Live status badge */
 .dashboard-card__badge {
   font-size: 10px;
   font-weight: 700;
@@ -86,7 +59,6 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Gentle pulse — signals live data */
 @keyframes pulse {
   0%,
   100% {
@@ -97,9 +69,7 @@
   }
 }
 
-/* ------------------------------------------------------------
-   KPI GRID — 2×2 on desktop
-   ------------------------------------------------------------ */
+/* Statistic cards */
 .dashboard-card__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -107,10 +77,7 @@
   margin-bottom: 18px;
 }
 
-/* ------------------------------------------------------------
-   .stat — one KPI card
-   Left accent color driven by --accent (set by modifiers)
-   ------------------------------------------------------------ */
+/* Individual statistic card */
 .stat {
   position: relative;
   padding: 12px 14px 12px 18px;
@@ -130,7 +97,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: var(--accent, #2563eb); /* fallback blue */
+  background: var(--accent, #2563eb);
 }
 
 .stat:hover {
@@ -157,9 +124,7 @@
   margin-top: 4px;
 }
 
-/* ------------------------------------------------------------
-   COLOR MODIFIERS — only set --accent
-   ------------------------------------------------------------ */
+/* Accent colors for each statistic */
 .stat--blue {
   --accent: #2563eb;
 }
@@ -173,9 +138,7 @@
   --accent: #d97706;
 }
 
-/* ------------------------------------------------------------
-   PROGRESS BAR — active students
-   ------------------------------------------------------------ */
+/* Active-student progress bar */
 .dashboard-card__progress {
   padding-top: 14px;
   border-top: 1px solid var(--border);
@@ -197,7 +160,7 @@
 .progress-value {
   font-size: 12px;
   font-weight: 700;
-  color: #16a34a; /* green for active */
+  color: #16a34a;
 }
 
 .progress-track {
@@ -208,7 +171,6 @@
   overflow: hidden;
 }
 
-/* width set inline via style={{ width: `${activePercent}%` }} */
 .progress-fill {
   height: 100%;
   width: 0;
@@ -217,9 +179,7 @@
   transition: width 0.6s ease;
 }
 
-/* ------------------------------------------------------------
-   RESPONSIVE — 1 column on small screens
-   ------------------------------------------------------------ */
+/* Stack statistic cards on narrow screens */
 @media (max-width: 480px) {
   .dashboard-card__grid {
     grid-template-columns: 1fr;
@@ -228,21 +188,3 @@
     font-size: 20px;
   }
 }
-
-/* ============================================================
-   END OF FILE
-   Class summary:
-     .dashboard-card              → main wrapper
-     .dashboard-card__header      → title + live badge
-     .dashboard-card__title       → heading
-     .dashboard-card__subtitle    → subtitle
-     .dashboard-card__badge       → "Live" pill (pulsing)
-     .dashboard-card__grid        → 2×2 KPI grid
-     .stat                        → one KPI card
-     .stat__value / .stat__label  → number + label
-     .stat--blue / --green / --purple / --amber
-                                  → color modifiers
-     .dashboard-card__progress    → progress section
-     .progress-row/-label/-value  → row above bar
-     .progress-track / -fill      → the bar itself
-   ============================================================ */

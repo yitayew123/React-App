@@ -1,233 +1,178 @@
-/* ============================================================
-   JSXFormPartOne.css
-   Attractive card-style form for the <JSXFormPartOne /> component.
-
-   DESIGN NOTES:
-   - Centered card with soft gradient and shadow
-   - Blue-tinted labels and focus rings
-   - Gradient submit button with hover lift
-   - Responsive: full-width on mobile
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   PAGE SCROLL FIX
-   Allow the page to scroll if content grows.
-   ------------------------------------------------------------ */
-html,
-body,
-#root {
-  min-height: 100%;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  background-color: #eef2ff;                 /* soft indigo page bg */
-}
-
-/* ------------------------------------------------------------
-   .form-page
-   Full-screen wrapper that centers the card.
-   ------------------------------------------------------------ */
 .form-page {
-  min-height: 100vh;                         /* fill viewport */
-  display: flex;                             /* flex center */
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: radial-gradient(                 /* subtle glow */
-    circle at top left,
-    #e0e7ff 0%,
-    #eef2ff 45%,
-    #ffffff 100%
-  );
-}
+  --form-accent: #8b35d5;
+  --form-accent-dark: #7023b5;
 
-/* ------------------------------------------------------------
-   .form-card
-   The white card that holds the form.
-   ------------------------------------------------------------ */
-.form-card {
+  display: grid;
+  place-items: center;
   width: 100%;
-  max-width: 400px;                          /* readable width */
-  padding: 28px 26px 24px;                   /* inner spacing */
-  background: linear-gradient(                /* soft gradient */
-    180deg,
-    #ffffff 0%,
-    #f8fafc 100%
-  );
-  border-radius: 16px;                       /* rounded corners */
-  box-shadow:
-    0 10px 30px rgba(30, 41, 59, 0.10),      /* outer shadow */
-    0 2px 6px rgba(30, 41, 59, 0.06);        /* fine shadow */
-  border: 1px solid #e5e7eb;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 48px 20px;
+  color: #242033;
+  color-scheme: light;
+  text-align: left;
+  background:
+    radial-gradient(ellipse at 12% 18%, rgb(222 197 255 / 54%), transparent 34%),
+    radial-gradient(ellipse at 88% 82%, rgb(255 218 231 / 62%), transparent 32%),
+    #f7f5fb;
 }
 
-/* ------------------------------------------------------------
-   Heading + subtitle
-   ------------------------------------------------------------ */
+.form-card {
+  position: relative;
+  width: min(100%, 440px);
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 40px;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 24px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow:
+    0 24px 70px rgb(52 31 79 / 12%),
+    0 4px 14px rgb(52 31 79 / 5%);
+  backdrop-filter: blur(14px);
+}
+
+.form-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, #8134d1, #bd65e8 55%, #f19ab9);
+  content: "";
+}
+
 .form-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1e3a8a;                            /* deep blue */
+  margin: 0 0 8px;
+  color: #282039;
+  font-size: clamp(26px, 6vw, 32px);
+  font-weight: 750;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
   text-align: center;
-  margin: 0 0 4px 0;
-  letter-spacing: 0.2px;
 }
 
 .form-subtitle {
-  font-size: 13px;
-  color: #6b7280;                            /* muted gray */
+  margin: 0 0 30px;
+  color: #777184;
+  font-size: 15px;
+  line-height: 1.5;
   text-align: center;
-  margin: 0 0 18px 0;
 }
 
-/* ------------------------------------------------------------
-   .form-body
-   Stacked layout for label + input + button.
-   ------------------------------------------------------------ */
 .form-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
 }
 
-/* ------------------------------------------------------------
-   .form-label
-   Small uppercase label above the input.
-   ------------------------------------------------------------ */
 .form-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #2563eb;                            /* blue accent */
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin-left: 2px;
+  margin: 0 0 1px 2px;
+  color: #494258;
+  font-size: 13px;
+  font-weight: 650;
 }
 
-/* ------------------------------------------------------------
-   .form-input
-   Rounded text input with blue focus ring.
-   ------------------------------------------------------------ */
 .form-input {
-  width: 100%;
-  padding: 12px 14px;                        /* comfortable tap area */
-  font-size: 14px;
-  color: #1f2937;
-  background-color: #ffffff;
-  border: 1.5px solid #d1d5db;
-  border-radius: 10px;
+  width: 95%;
+  max-width: 90%;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: 45px;
+  padding: 0 16px;
+  border: 1px solid #e3deea;
+  border-radius: 12px;
   outline: none;
+  background: #fcfbfe;
+  color: #282039;
+  font: inherit;
+  font-size: 15px;
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
-/* Placeholder text */
 .form-input::placeholder {
-  color: #9ca3af;                            /* muted gray */
+  color: #aaa4b4;
 }
 
-/* Focus state: blue border + soft glow */
-.form-input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-  background-color: #ffffff;
-}
-
-/* Hover state */
 .form-input:hover:not(:focus) {
-  border-color: #93c5fd;
+  border-color: #c9b8dc;
 }
 
-/* ------------------------------------------------------------
-   .form-btn
-   Gradient submit button with hover lift.
-   ------------------------------------------------------------ */
+.form-input:focus {
+  border-color: var(--form-accent);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(139 53 213 / 13%);
+}
+
 .form-btn {
-  margin-top: 8px;
-  padding: 12px 18px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  border: none;
-  border-radius: 10px;
+  min-height: 52px;
+  margin-top: 12px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(110deg, var(--form-accent), #a34bd6);
+  box-shadow: 0 8px 18px rgb(139 53 213 / 24%);
+  color: #fff;
   cursor: pointer;
-  letter-spacing: 0.3px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
 }
 
-/* Hover: lift + stronger glow */
 .form-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(110deg, var(--form-accent-dark), #9138c5);
+  box-shadow: 0 11px 22px rgb(139 53 213 / 30%);
 }
 
-/* Active (pressed) state */
 .form-btn:active {
   transform: translateY(0);
-  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 4px 10px rgb(139 53 213 / 22%);
 }
 
-/* Focus ring for keyboard users */
 .form-btn:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.35);
-  outline-offset: 2px;
+  outline: 3px solid rgb(139 53 213 / 35%);
+  outline-offset: 3px;
 }
 
-/* ------------------------------------------------------------
-   .form-preview
-   Live preview line under the form.
-   ------------------------------------------------------------ */
 .form-preview {
-  margin: 16px 0 0 0;
-  font-size: 12px;
-  color: #6b7280;
-  text-align: center;
+  margin: 24px 0 0;
+  padding: 13px 15px;
+  border: 1px solid #eee8f5;
+  border-radius: 12px;
+  background: #faf8fd;
+  color: #777184;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .form-preview__value {
-  font-weight: 700;
-  color: #1e40af;                            /* dark blue */
+  color: var(--form-accent-dark);
+  font-weight: 650;
 }
 
-/* ------------------------------------------------------------
-   RESPONSIVE — tighter on small screens
-   ------------------------------------------------------------ */
 @media (max-width: 480px) {
+  .form-page {
+    padding: 28px 16px;
+  }
+
   .form-card {
-    padding: 22px 18px;
-    border-radius: 14px;
+    padding: 34px 24px 26px;
+    border-radius: 20px;
   }
+}
 
-  .form-title {
-    font-size: 20px;
-  }
-
+@media (prefers-reduced-motion: reduce) {
   .form-input,
   .form-btn {
-    font-size: 13px;
+    transition: none;
   }
 }
-
-/* ============================================================
-   END OF FILE
-   Class summary:
-     .form-page            → full-screen wrapper with gradient bg
-     .form-card            → white card holding the form
-     .form-title           → main heading
-     .form-subtitle        → small subtitle
-     .form-body            → stacked form layout
-     .form-label           → uppercase label
-     .form-input           → text input with focus glow
-     .form-btn             → gradient submit button
-     .form-preview         → live preview line
-     .form-preview__value  → bold value inside preview
-   ============================================================ */
